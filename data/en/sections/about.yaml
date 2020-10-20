@@ -1,0 +1,71 @@
+# section information
+section:
+  name: About
+  id: about
+  enable: true
+  weight: 2
+  showOnNavbar: true
+  template: sections/about.html
+
+# your designation
+designation: Data Scientist
+# your company information
+company:
+  name: ARAG SE.
+  url: "https://www.arag.de"
+
+# your resume. this file path should be relative to you "static" directory
+resume: "files/CV.pdf"
+
+# a summary about you
+summary: 'I am a passionate Data Scienist with some years of working experience. I enjoy delivering evidence based data-driven solutions to topics regarding human behavior.'
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+- name: Email
+  icon: "fas fa-envelope"
+  url: "marcel.gehrke@posteo.de"
+
+- name: Github
+  icon: "fab fa-github"
+  url: "https://github.com/MarcelGehrke "
+
+- name: Stackoverflow
+  icon: "fab fa-stack-overflow"
+  url: "https://stackoverflow.com/users/6624959/marcel-g"
+
+- name: LinkedIn
+  icon: "fab fa-linkedin"
+  url: "https://www.linkedin.com/in/marcel-gehrke-222540111/"
+
+
+# your soft skills
+# give the percentage between 50 to 100 with 5 intervals.
+# currently supported colors: blue, yellow, pink, green, sky, orange
+softSkills:
+- name: Creativity
+  percentage: 85
+  color: blue
+- name: Team Work
+  percentage: 95
+  color: yellow
+- name: Communication
+  percentage: 85
+  color: pink
+- name: Hard Working
+  percentage: 85
+  color: green
+- name: Fast Learner
+  percentage: 85
+  color: sky
+- name: Problem Solving
+  percentage: 85
+  color: orange
+# you can also provide color code instead of pre-defined color name
+# - name: Example 1
+#   percentage: 75
+#   color: "#00adb5"
+# - name: Example 2
+#   percentage: 65
+#   color: "#8b8383"

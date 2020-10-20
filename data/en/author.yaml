@@ -1,0 +1,19 @@
+# some information about you
+name: "Marcel Gehrke"
+nickname: "Marcel"
+# greeting message before your name. it will default to "Hi! I am" if not provided
+greeting: "Hi, I am"
+image: "images/avatar.jpg"
+# give your some contact information. they will be used in the footer
+contactInfo:
+  email: "marcel.gehrke@posteo.de"
+  phone: "+49 177 598 65 86"
+
+# some summary about what you do
+summary:
+  - I am a Data Scientist
+  - I am a Sociologist
+  - I love football
+  - I enjoy museum
+  - I love punk rock
+  - I love football

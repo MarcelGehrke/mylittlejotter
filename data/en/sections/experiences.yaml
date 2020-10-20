@@ -1,0 +1,84 @@
+# section information
+section:
+  name: Experiences
+  id: experiences
+  enable: true
+  weight: 3
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# Your experiences
+experiences:
+- company:
+    name: ARAG SE
+    url: "https://www.arag.de"
+    location: Düsseldorf, Germany
+    # company overview
+    overview: ARAG SE is germanys largest family-owned insurance company. It's among the leading legal expenses insurances worldwide.
+  positions:
+  - designation: Data Scientist
+    start: April 2018
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Providing data‑driven and evidence based solutions to organization‑wide problems using state of the art algorithms and modelling techniques.
+    - Taking responsibility for whole project lifecycles.
+    - Reporting results and recommendations for actions via presentations, interactive html‑documents and web‑applications.
+    - Important internal clients are board members, sales strategy executives as well as the product development department.
+
+
+- company:
+    name: Deloitte
+    url: "https://www2.deloitte.com/global/en.html?icid=site_selector_global"
+    location: Düsseldorf, Germany
+    overview: Deloitte is a multinational professional services network. Its services include Audit & Assurance, Financial Advisory, Consulting, Legal, Tax and Risk Advisory.
+  positions:
+  - designation: Data Analyst | Risk Advisory
+    start: October 2017
+    end: April 2018
+    responsibilities:
+    - Member of a highly interdisciplinary and international project team inside the ’Segregation of Duties’ Division of one of Europes biggest banks.
+    - Focus on conveying between IT and business stakeholders around the world to ensure the fulfillment of regulatory requirements.
+
+- company:
+    name: Institute for Advanced Studies in the Humanities (KWI)
+    url: "https://kulturwissenschaften.de/en/"
+    location: Essen, Germany
+    overview: BLA
+  positions:
+  - designation: Research Analyst
+    start: October 2016
+    end: Juni 2017
+    responsibilities:
+    - Research within the project ‘FinShare’ (’Citizen Participation within the Share Economy using the example of financial markets’, funded by the German Ministry of Justice and Consumer Protection.
+    - Supporting the organization of the projects closing conference.
+    - Accompanying expert interviews.
+    - Collaborative writing of the proposal for a follow up project.
+
+- company:
+    name: GESIS – Leibniz Institute for the Social Sciences
+    url: "https://www.gesis.org/en/home"
+    location: Cologne, Germany
+    overview: BLA
+  positions:
+  - designation: Student Assistant
+    start: February 2016
+    end: February 2017
+    responsibilities:
+    - Assisting the team ’Data Linking and Data Security’, including the Secure Data Center.
+    - Supporting various research projects regarding ubiquitous computing, georeferencing of survey data and the Qualitative Election Study of Britain.
+
+- company:
+    name: Innofact AG
+    url: "https://innofact-marktforschung.de/en/"
+    location: Düsseldorf, Germany
+    overview: BLA
+  positions:
+  - designation: Internship
+    start: March 2015
+    end: May 2015
+    responsibilities:
+    - Supporting the online market research institute conducting quantitative analyses and reporting them to clients.
+
