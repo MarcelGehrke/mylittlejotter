@@ -25,10 +25,10 @@ markup:
     ordered: false
 
 # Enable Google Analytics
-googleAnalytics: UA-XXXXXXXXX-X
+googleAnalytics: UA-8568137-1
 
 # Enable Disqus forum
-disqusShortname: does-not-exist
+disqusShortname: https-mylittlejotter-netlify-app
 
 # Enable global emoji support
 enableEmoji: true
