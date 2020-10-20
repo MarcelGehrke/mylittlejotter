@@ -1,4 +1,4 @@
-baseURL: http://example.org/
+baseURL: https://mylittlejotter.netlify.app/
 languageCode: en-us
 title: "my little jotter"
 theme: "toha"
