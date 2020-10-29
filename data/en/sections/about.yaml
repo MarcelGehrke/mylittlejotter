@@ -45,7 +45,7 @@ socialLinks:
 # currently supported colors: blue, yellow, pink, green, sky, orange
 softSkills:
 - name: Creativity
-  percentage: 85
+  percentage: 10
   color: blue
 - name: Team Work
   percentage: 95
