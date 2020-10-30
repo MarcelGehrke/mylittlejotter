@@ -1,6 +1,6 @@
 # section information
 section:
-  name: Projects
+  name: Projects and Achievements
   id: projects
   enable: true
   weight: 4
@@ -16,8 +16,7 @@ buttons:
   filter: "professional"
 - name: Academic
   filter: "academic"
-- name: Hobby
-  filter: "hobby"
+
 
 # your projects
 projects:
