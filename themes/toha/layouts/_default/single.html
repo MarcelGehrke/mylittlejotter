@@ -54,16 +54,6 @@
           {{ .Page.Content }}
         </div>
 
-        <!--- Improve this page button --->
-        {{ if .Site.Params.GitRepo }}
-          <div class="btn-improve-page">
-              <a href="{{ .Site.Params.GitRepo }}/edit/master/content/{{ .File.Path }}">
-                <i class="fas fa-code-branch"></i>
-                Improve This Page
-              </a>
-          </div>
-        {{ end }}
-
         <!---Next and Previous Navigator -->
       <hr />
         {{ partial "navigators/next-prev-navigator.html" . }}

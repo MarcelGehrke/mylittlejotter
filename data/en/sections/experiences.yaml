@@ -3,7 +3,7 @@ section:
   name: Experiences
   id: experiences
   enable: true
-  weight: 3
+  weight: 5
   showOnNavbar: true
   # Can optionally hide the title in sections
   # hideTitle: true
@@ -24,9 +24,6 @@ experiences:
     # give some points about what was your responsibilities at the company.
     responsibilities:
     - Providing data‑driven and evidence based solutions to organization‑wide problems using state of the art algorithms and modelling techniques.
-    - Taking responsibility for whole project lifecycles.
-    - Reporting results and recommendations for actions via presentations, interactive html‑documents and web‑applications.
-    - Important internal clients are board members, sales strategy executives as well as the product development department.
 
 
 - company:
@@ -40,41 +37,41 @@ experiences:
     end: April 2018
     responsibilities:
     - Member of a highly interdisciplinary and international project team inside the ’Segregation of Duties’ Division of one of Europes biggest banks.
-    - Focus on conveying between IT and business stakeholders around the world to ensure the fulfillment of regulatory requirements.
+    # - Focus on conveying between IT and business stakeholders around the world to ensure the fulfillment of regulatory requirements.
 
 - company:
     name: Institute for Advanced Studies in the Humanities (KWI)
     url: "https://kulturwissenschaften.de/en/"
     location: Essen, Germany
-    overview: BLA
+    # overview: BLA
   positions:
   - designation: Research Analyst
     start: October 2016
     end: Juni 2017
     responsibilities:
     - Research within the project ‘FinShare’ (’Citizen Participation within the Share Economy using the example of financial markets’, funded by the German Ministry of Justice and Consumer Protection.
-    - Supporting the organization of the projects closing conference.
-    - Accompanying expert interviews.
-    - Collaborative writing of the proposal for a follow up project.
+    # - Supporting the organization of the projects closing conference.
+    # - Accompanying expert interviews.
+    # - Collaborative writing of the proposal for a follow up project.
 
 - company:
     name: GESIS – Leibniz Institute for the Social Sciences
     url: "https://www.gesis.org/en/home"
     location: Cologne, Germany
-    overview: BLA
+    # overview: BLA
   positions:
   - designation: Student Assistant
     start: February 2016
     end: February 2017
     responsibilities:
     - Assisting the team ’Data Linking and Data Security’, including the Secure Data Center.
-    - Supporting various research projects regarding ubiquitous computing, georeferencing of survey data and the Qualitative Election Study of Britain.
+    # - Supporting various research projects regarding ubiquitous computing, georeferencing of survey data and the Qualitative Election Study of Britain.
 
 - company:
     name: Innofact AG
     url: "https://innofact-marktforschung.de/en/"
     location: Düsseldorf, Germany
-    overview: BLA
+    # overview: BLA
   positions:
   - designation: Internship
     start: March 2015

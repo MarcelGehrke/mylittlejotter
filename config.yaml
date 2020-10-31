@@ -44,10 +44,10 @@ params:
   logo:
     main: assets/images/main-logo.webp
     inverted: assets/images/inverted-logo.webp
-    favicon: assets/images/favicon.webp
+    favicon: assets/images/main-logo.webp
 
   # GitHub repo URL of your site
-  gitRepo: https://github.com/hossainemruz/toha-example-site
+  gitRepo: https://github.com/MarcelGehrke/mylittlejotter
 
   # specify whether you want to write blog post or not
   enableBlogPost: true

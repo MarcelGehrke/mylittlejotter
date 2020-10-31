@@ -5,17 +5,8 @@
 
 To-do's
 
-- entwerfe Logo
 - entferne "| Posts"
-- neues Bild Avatar
 - kleineres Bild Avatar
-- alternativer background?
 - Introtext
-- Wie Postheader ändern?
-- Wie Post Datum ändern?
-- CV Update
 - Skills ergänzen
-- Experiences updaten
-- Projects anpassen
 - s.o. auch webp images
-- ggf. contact me entfernen

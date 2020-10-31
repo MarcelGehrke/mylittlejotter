@@ -18,7 +18,7 @@ company:
 # resume: "files/CV.pdf"
 
 # a summary about you
-summary: 'I am a passionate Data Scienist with some years of working experience. I enjoy delivering evidence based data-driven solutions to topics regarding human behavior.'
+summary: 'I am a passionate Data Scienist with some years of working experience. I enjoy delivering evidence based data-driven solutions regarding human behavior.'
 
 # your social links
 # give as many as you want. use font-awesome for the icons.
@@ -45,7 +45,7 @@ socialLinks:
 # currently supported colors: blue, yellow, pink, green, sky, orange
 softSkills:
 - name: Creativity
-  percentage: 10
+  percentage: 95
   color: blue
 - name: Team Work
   percentage: 95
