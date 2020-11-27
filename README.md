@@ -10,3 +10,4 @@ To-do's
 - Introtext
 - Skills ergänzen
 - s.o. auch webp images
+- git test
