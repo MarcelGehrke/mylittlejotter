@@ -12,3 +12,4 @@ To-do's
 - s.o. auch webp images
 - git test
 adding a line
+geht auch anders herum
