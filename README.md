@@ -11,3 +11,4 @@ To-do's
 - Skills ergänzen
 - s.o. auch webp images
 - git test
+adding a line
