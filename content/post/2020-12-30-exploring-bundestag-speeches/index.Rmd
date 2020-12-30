@@ -1,0 +1,15 @@
+---
+title: Exploring Bundestag Speeches
+author: Marcel
+date: '2020-12-30'
+slug: []
+categories:
+  - R
+  - Analytics
+tags:
+  - Polics
+  - Society
+hero: /assets/images/background/sunrise.jpg
+---
+
+Blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
