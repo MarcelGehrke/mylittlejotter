@@ -1,6 +1,6 @@
 ---
-hero: /assets/images/background/sunrise.jpg
+hero: /assets/images/default-hero.webp
 author:
-    name: Md. Emruz Hossain
-    image: /assets/images/profile-image.jpg
+    name: Marcel Gehrke
+    image: /assets/images/default-avatar.webp
 ---

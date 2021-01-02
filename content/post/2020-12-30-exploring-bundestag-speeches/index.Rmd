@@ -1,15 +1,140 @@
 ---
-title: Exploring Bundestag Speeches
-author: Marcel
+title: "Exploring Bundestag Speeches"
+author: "Marcel"
 date: '2020-12-30'
 slug: []
-categories:
-  - R
-  - Analytics
+categories: R
 tags:
-  - Polics
-  - Society
-hero: /assets/images/background/sunrise.jpg
+- Politics
+- Open Data
+hero: /assets/images/default-hero.webp
 ---
 
-Blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Bla bla bla Einleitungsgedöns. 
+
+Was über die Daten.
+
+Dann kommt der simple Plot. 
+
+Und ciao.
+
+```{r library_calls, include=FALSE}
+
+library(ggplot2)
+library(magrittr)
+library(dplyr)
+library(gganimate)
+library(lubridate)
+library(purrr)
+library(zoo)
+
+```
+
+```{r read_data, eval=FALSE, include=FALSE}
+
+data <- readRDS("speeches_data.RDS")
+
+```
+
+
+```{r prep_chart_data, eval=FALSE, include=FALSE}
+
+data %<>%
+  filter(firstName != "Not found",
+         positionShort == "Member of Parliament") %>%
+  mutate(year = year(date),
+         full_name = paste(firstName, lastName))
+
+context_data <- 
+  data %>%
+  group_by(full_name) %>%
+  filter(year == max(year)) %>%
+  ungroup() %>%
+  select(
+    full_name,
+    positionShort,
+    party = abbreviation
+    ) %>% 
+  unique()
+
+data %<>%
+  group_by(year, full_name) %>% 
+  count(name = "sum_speeches") %>% 
+  ungroup()
+
+all_years <- tibble(year = seq(min(data$year), max(data$year), 1))
+
+all_combos <- merge(data %>% select(full_name) %>% 
+                      distinct(), all_years, all = TRUE)
+
+all_data_interp <- merge(data, all_combos, all.y = TRUE)
+
+all_data_interp %<>%
+  mutate(sum_speeches = if_else(is.na(sum_speeches), 0L, sum_speeches)) %>% 
+  group_by(full_name) %>% 
+  mutate(
+    speeches_cum = cumsum(sum_speeches),
+    ) %>% 
+  ungroup() %>% 
+  left_join(context_data, by = "full_name")
+
+plot_data <- 
+  all_data_interp %>% 
+  group_by(year) %>% 
+  arrange(-speeches_cum) %>% 
+  mutate(rank = row_number()) %>% 
+  filter(rank <= 15) %>% 
+  ungroup()
+
+plot_data %<>%
+  mutate(party = if_else(party %in% c("BP", "DA", "DP", "FU", "KPD", "WAV", "GB/BHE"), "other", party))
+
+cols <- c("CDU/CSU" = "#000000", "DIE LINKE." = "#DF044D", "FDP" = "#FFED00", "Grüne" = "#347020", "other" = "grey", "SPD" = "#E30400")
+
+```
+
+```{r plot, eval=FALSE, include=FALSE}
+
+plot <-
+plot_data %>%
+  ggplot(aes(x = -rank, y = speeches_cum, group = full_name)) +
+  geom_col(aes(y = speeches_cum / 2, fill = party),
+           alpha = 0.8,
+           width = 0.9) +
+  geom_text(
+    aes(label = full_name),
+    hjust = "right",
+    colour = "black",
+    fontface = "bold",
+    nudge_y = -10
+  ) +
+  geom_text(
+    aes(label = scales::number(speeches_cum, accuracy = 1)),
+    hjust = "left",
+    nudge_y = -0,
+    colour = "grey30"
+  ) +
+  coord_flip(clip = "off") +
+  scale_x_discrete("") +
+  scale_y_continuous("", labels = scales::number) +
+  theme_bw() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    legend.position = "bottom",
+    axis.text.y = element_blank(),
+    panel.border = element_blank()
+  ) +
+  scale_fill_manual(values = cols) +
+  transition_time(year) +
+  ease_aes('cubic-in-out') +
+  labs(title = "Most speeches by members of the Bundestag",
+       caption = "Secretaries of state as well as administrative positions are excluded",
+       subtitle = "1949 - {round(frame_time, 0)}")
+
+plot_gif <- animate(plot, nframes = 700, end_pause = 42, start_pause = 10)
+
+anim_save("plot.gif", plot_gif)
+```
+
+![](plot.gif)

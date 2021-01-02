@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Open Data on my little jotter</title>
+    <link>https://mylittlejotter.netlify.app/tags/open-data/</link>
+    <description>Recent content in Open Data on my little jotter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://mylittlejotter.netlify.app/tags/open-data/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploring Bundestag Speeches</title>
+      <link>https://mylittlejotter.netlify.app/post/2020-12-30-exploring-bundestag-speeches/</link>
+      <pubDate>Wed, 30 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mylittlejotter.netlify.app/post/2020-12-30-exploring-bundestag-speeches/</guid>
+      <description>Bla bla bla Einleitungsgedöns.
+Was über die Daten.
+Dann kommt der simple Plot.
+Und ciao.
+library(ggplot2) library(magrittr) library(dplyr) ## ## Attaching package: &amp;#39;dplyr&amp;#39; ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## filter, lag ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## intersect, setdiff, setequal, union library(gganimate) ## No renderer backend detected. gganimate will default to writing frames to separate files ## Consider installing: ## - the `gifski` package for gif output ## - the `av` package for video output ## and restarting the R session library(lubridate) ## ## Attaching package: &amp;#39;lubridate&amp;#39; ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## date, intersect, setdiff, union library(purrr) ## ## Attaching package: &amp;#39;purrr&amp;#39; ## The following object is masked from &amp;#39;package:magrittr&amp;#39;: ## ## set_names data &amp;lt;- readRDS(&amp;quot;.</description>
+    </item>
+    
+  </channel>
+</rss>
