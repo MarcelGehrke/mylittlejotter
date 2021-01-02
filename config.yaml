@@ -59,3 +59,5 @@ params:
   # Currently, you can just hide it from the footer.
   newsletter:
     enable: false
+
+ignoreFiles: ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
