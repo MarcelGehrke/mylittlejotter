@@ -10,13 +10,13 @@ tags:
 hero: /assets/images/default-hero.webp
 ---
 
-Bla bla bla Einleitungsgedöns. 
+# Bla bla bla Einleitungsgedöns. 
 
-Was über die Daten.
+## Was über die Daten.
 
-Dann kommt der simple Plot. 
+## Dann kommt der simple Plot. 
 
-Und ciao.
+# Und ciao.
 
 ```{r library_calls, include=FALSE}
 
@@ -132,7 +132,7 @@ plot_data %>%
        caption = "Secretaries of state as well as administrative positions are excluded",
        subtitle = "1949 - {round(frame_time, 0)}")
 
-plot_gif <- animate(plot, nframes = 700, end_pause = 42, start_pause = 10)
+plot_gif <- animate(plot, nframes = 400, end_pause = 42, start_pause = 10, width = 1100, height = 800)
 
 anim_save("plot.gif", plot_gif)
 ```
