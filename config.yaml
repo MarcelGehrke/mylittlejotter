@@ -28,7 +28,7 @@ markup:
 googleAnalytics: UA-8568137-1
 
 # Enable Disqus forum
-disqusShortname: https-mylittlejotter-netlify-app
+# disqusShortname: https-mylittlejotter-netlify-app
 
 # Enable global emoji support
 enableEmoji: true
