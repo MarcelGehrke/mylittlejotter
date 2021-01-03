@@ -6,7 +6,7 @@
 }
 
 .content-section {
-  flex: 80%;
+  flex: 100%;
   order: 2;
   /* background-color: lightseagreen; */
   padding: 0;
@@ -103,8 +103,8 @@
   .content-section {
     padding-left: 1rem;
     padding-right: 1rem;
-    flex: 85%;
-    max-width: 85%;
+    flex: 100%;
+    max-width: 100%;
   }
   .post-card-holder .post-card {
     width: calc(100% / 5);
@@ -136,7 +136,7 @@
   }
   .content-section {
     padding: 0;
-    flex: 60%;
+    flex: 100%;
     order: 2;
     padding-bottom: 0.5rem;
   }
@@ -182,7 +182,7 @@
   }
 
   .content-section.hide .post-card-holder .post-card {
-    width: 50%;
+    width: 100%;
   }
 }
 
