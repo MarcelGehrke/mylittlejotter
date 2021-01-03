@@ -121,6 +121,8 @@ plot_data %>%
   theme(
     panel.grid.major.y = element_blank(),
     panel.grid.minor.x = element_blank(),
+    panel.background = element_rect(fill = "#f9fafc"),
+    plot.background = element_rect(fill = "#f9fafc"),
     legend.position = "bottom",
     axis.text.y = element_blank(),
     panel.border = element_blank()
@@ -132,7 +134,7 @@ plot_data %>%
        caption = "Secretaries of state as well as administrative positions are excluded",
        subtitle = "1949 - {round(frame_time, 0)}")
 
-plot_gif <- animate(plot, nframes = 400, end_pause = 42, start_pause = 10, width = 1100, height = 800)
+plot_gif <- animate(plot, nframes = 700, end_pause = 42, start_pause = 10, width = 1816, height = 1000)
 
 anim_save("plot.gif", plot_gif)
 ```
