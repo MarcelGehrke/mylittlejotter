@@ -12,24 +12,6 @@
     {{ partial "navigators/navbar-2.html" . }}
 {{ end }}
 
-{{ define "sidebar" }}
-  <section class="sidebar-section" id="sidebar-section">
-    <div class="sidebar-holder">
-      <div class="sidebar" id="sidebar">
-        <input type="text" value="" placeholder="Search" data-search="" id="search-box" />
-        <div class="sidebar-tree">
-          <ul class="tree" id="tree">
-            <li id="list-heading"><a href="{{ site.BaseURL | absLangURL }}posts" data-filter="all">Posts</a></li>
-            <div class="subtree">
-                {{ partial "navigators/sidebar.html" (dict "menus" .Site.Menus.sidebar "ctx" .) }}
-            </div>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-{{ end }}
-
 {{ define "content" }}
 <section class="content-section" id="content-section">
   <div class="content">
@@ -69,20 +51,6 @@
     {{ partial "navigators/floating-lang-selector.html" . }}
   {{ end }}
 </section>
-{{ end }}
-
-{{ define "toc" }}
-  <section class="toc-section" id="toc-section">
-    {{ if site.Params.enableTOC }}
-    <div class="toc-holder">
-      <h5 class="text-center pl-3">Table of Contents</h5>
-      <hr>
-      <div class="toc">
-        {{ .TableOfContents }}
-      </div>
-    </div>
-    {{ end }}
-  </section>
 {{ end }}
 
 {{ define "scripts" }}
