@@ -51,14 +51,14 @@ softSkills:
 - name: Communication
   percentage: 95
   color: green
-# - name: Hard Working
-#   percentage: 85
-#   color: green
-# - name: Fast Learner
-#   percentage: 85
-#   color: sky
+- name: Hard Working
+  percentage: 85
+  color: yellow
+- name: Fast Learner
+  percentage: 85
+  color: pink
 - name: Problem Solving
-  percentage: 90
+  percentage: 95
   color: orange
 # you can also provide color code instead of pre-defined color name
 # - name: Example 1

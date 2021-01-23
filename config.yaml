@@ -25,7 +25,9 @@ markup:
     ordered: false
 
 # Enable Google Analytics
-googleAnalytics: UA-8568137-1
+googleAnalytics: G-EWS6FXFZPL
+#UA-8568137-1
+
 
 # Enable Disqus forum
 disqusShortname: https-mylittlejotter-netlify-app
