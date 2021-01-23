@@ -1,24 +1,30 @@
 ---
-title: "Exploring Bundestag Speeches"
+title: "Speeches in german Parliament"
 author: "Marcel"
-date: '2020-12-30'
+date: '2020-01-22'
 slug: []
 categories: R
 tags:
 - Politics
 - Open Data
+- Bundestag
 hero: /assets/images/default-hero.webp
+output: 
+  html_document: 
+    code_folding: show
+    df_print: kable
+    highlight: chaos
 ---
 
-# Bla bla bla Einleitungsgedöns. 
+# Bla bla bla Einleitungsgedöns.
 
 ## Was über die Daten.
 
-## Dann kommt der simple Plot. 
+## Dann kommt der simple Plot.
 
 # Und ciao.
 
-```{r library_calls, include=FALSE}
+```{r library_calls, message=FALSE, warning=FALSE, include=FALSE}
 
 library(ggplot2)
 library(magrittr)
@@ -27,17 +33,17 @@ library(gganimate)
 library(lubridate)
 library(purrr)
 library(zoo)
+library(pander)
 
 ```
 
-```{r read_data, eval=FALSE, include=FALSE}
+```{r read_data, message=FALSE, warning=FALSE, include=FALSE}
 
 data <- readRDS("speeches_data.RDS")
 
 ```
 
-
-```{r prep_chart_data, eval=FALSE, include=FALSE}
+```{r prep_chart_data, message=FALSE, warning=FALSE}
 
 data %<>%
   filter(firstName != "Not found",
@@ -45,58 +51,88 @@ data %<>%
   mutate(year = year(date),
          full_name = paste(firstName, lastName))
 
-context_data <- 
+context_data <-
   data %>%
   group_by(full_name) %>%
   filter(year == max(year)) %>%
   ungroup() %>%
-  select(
-    full_name,
-    positionShort,
-    party = abbreviation
-    ) %>% 
+  select(full_name,
+         positionShort,
+         party = abbreviation) %>%
   unique()
 
 data %<>%
-  group_by(year, full_name) %>% 
-  count(name = "sum_speeches") %>% 
+  group_by(year, full_name) %>%
+  count(name = "sum_speeches") %>%
   ungroup()
 
 all_years <- tibble(year = seq(min(data$year), max(data$year), 1))
 
-all_combos <- merge(data %>% select(full_name) %>% 
+all_combos <- merge(data %>%
+                      select(full_name) %>%
                       distinct(), all_years, all = TRUE)
 
 all_data_interp <- merge(data, all_combos, all.y = TRUE)
 
 all_data_interp %<>%
-  mutate(sum_speeches = if_else(is.na(sum_speeches), 0L, sum_speeches)) %>% 
-  group_by(full_name) %>% 
-  mutate(
-    speeches_cum = cumsum(sum_speeches),
-    ) %>% 
-  ungroup() %>% 
+  mutate(sum_speeches = if_else(is.na(sum_speeches), 0L, sum_speeches)) %>%
+  group_by(full_name) %>%
+  mutate(speeches_cum = cumsum(sum_speeches)) %>%
+  ungroup() %>%
   left_join(context_data, by = "full_name")
 
-plot_data <- 
-  all_data_interp %>% 
-  group_by(year) %>% 
-  arrange(-speeches_cum) %>% 
-  mutate(rank = row_number()) %>% 
-  filter(rank <= 15) %>% 
+plot_data <-
+  all_data_interp %>%
+  group_by(year) %>%
+  arrange(-speeches_cum) %>%
+  mutate(rank = row_number()) %>%
+  filter(rank <= 15) %>%
   ungroup()
 
 plot_data %<>%
-  mutate(party = if_else(party %in% c("BP", "DA", "DP", "FU", "KPD", "WAV", "GB/BHE"), "other", party))
+  mutate(party = if_else(
+    party %in% c("BP", "DA", "DP", "FU", "KPD", "WAV", "GB/BHE"), 
+    "other",
+    party
+  ))
 
-cols <- c("CDU/CSU" = "#000000", "DIE LINKE." = "#DF044D", "FDP" = "#FFED00", "Grüne" = "#347020", "other" = "grey", "SPD" = "#E30400")
+cols <-
+  c(
+    "CDU/CSU" = "#000000",
+    "DIE LINKE." = "#DF044D",
+    "FDP" = "#FFED00",
+    "Grüne" = "#347020",
+    "other" = "grey",
+    "SPD" = "#E30400"
+  )
+```
+
+```{r custom_plot_theme, message=FALSE, warning=FALSE}
+
+plot_theme <- theme_bw() +
+  theme(
+    plot.title = element_text(size = 40, face = "bold", hjust = 0.5),
+    plot.caption = element_text(size = 20),
+    plot.subtitle = element_text(size = 30, hjust = 0.5),
+    plot.background = element_rect(fill = "#f9fafc"),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.background = element_rect(fill = "#f9fafc"),
+    panel.border = element_blank(),
+    legend.background = element_rect(fill = "#f9fafc"),
+    legend.text = element_text(size = 20),
+    legend.title = element_text(size = 20),
+    legend.position = "bottom",
+    axis.text.y = element_blank(),
+    axis.text.x = element_blank()
+  )
 
 ```
 
 ```{r plot, eval=FALSE, include=FALSE}
 
 plot <-
-plot_data %>%
+  plot_data %>%
   ggplot(aes(x = -rank, y = speeches_cum, group = full_name)) +
   geom_col(aes(y = speeches_cum / 2, fill = party),
            alpha = 0.8,
@@ -106,37 +142,103 @@ plot_data %>%
     hjust = "right",
     colour = "black",
     fontface = "bold",
-    nudge_y = -10
+    nudge_y = -10,
+    size = 10
   ) +
   geom_text(
     aes(label = scales::number(speeches_cum, accuracy = 1)),
     hjust = "left",
     nudge_y = -0,
-    colour = "grey30"
+    colour = "grey30",
+    size = 10
   ) +
   coord_flip(clip = "off") +
   scale_x_discrete("") +
   scale_y_continuous("", labels = scales::number) +
-  theme_bw() +
-  theme(
-    panel.grid.major.y = element_blank(),
-    panel.grid.minor.x = element_blank(),
-    panel.background = element_rect(fill = "#f9fafc"),
-    plot.background = element_rect(fill = "#f9fafc"),
-    legend.position = "bottom",
-    axis.text.y = element_blank(),
-    panel.border = element_blank()
-  ) +
   scale_fill_manual(values = cols) +
-  transition_time(year) +
-  ease_aes('cubic-in-out') +
-  labs(title = "Most speeches by members of the Bundestag",
+  plot_theme + 
+  labs(title = "Number of speeches by member of the Bundestag",
        caption = "Secretaries of state as well as administrative positions are excluded",
-       subtitle = "1949 - {round(frame_time, 0)}")
+       subtitle = "1949 - {round(frame_time, 0)}") +
+  ease_aes("cubic-in-out") +
+  transition_time(year) 
 
-plot_gif <- animate(plot, nframes = 700, end_pause = 42, start_pause = 10, width = 1816, height = 1000)
+plot_gif <-
+  animate(
+    plot,
+    nframes = 700,
+    end_pause = 42,
+    start_pause = 10,
+    width = 1816,
+    height = 1000
+  )
 
 anim_save("plot.gif", plot_gif)
 ```
 
 ![](plot.gif)
+
+## Merkels successor?
+
+On the 16th of January the CDU, which is Angela Merkels conservative party and also the biggest group in the german Bundestag voted for Armin Laschet as new party chairman. He and his two competitors are white, male lawyers from North Rhine-Westphalia. It's justifiable to assume that Laschet or Markus Söder member of the CDUs even more conservative bavarian sister party will become Merkels successor as chancellor.
+
+```{r cdu_chairman_data, message=FALSE, warning=FALSE}
+
+plot_cdu_data <-
+  all_data_interp %>%
+  filter(year == 2020,
+         full_name %in% c("Armin Laschet",
+                          "Norbert Röttgen",
+                          "Friedrich Merz")) %>%
+  group_by(year) %>%
+  arrange(-speeches_cum) %>%
+  mutate(rank = row_number()) %>%
+  ungroup()
+
+```
+
+```{r cdu_chairman_plot, message=FALSE, warning=FALSE}
+
+plot_cdu_data %>%
+  ggplot(aes(x = -rank, y = speeches_cum, group = full_name)) +
+  geom_col(aes(y = speeches_cum / 2, fill = party),
+           alpha = 0.8,
+           width = 0.9) +
+  geom_text(
+    aes(label = full_name),
+    hjust = "right",
+    colour = "black",
+    fontface = "bold",
+    nudge_y = 120,
+    size = 10
+  ) +
+  geom_text(
+    aes(label = scales::number(speeches_cum, accuracy = 1)),
+    hjust = "left",
+    nudge_y = 130,
+    colour = "grey30",
+    size = 10
+  ) +
+  coord_flip(clip = "off") +
+  scale_x_discrete("") +
+  scale_y_continuous("", labels = scales::number) +
+  plot_theme + 
+  theme(legend.position = "none") +
+  scale_fill_manual(values = cols) +
+  labs(title = "Number of speeches at the Bundestag",
+       subtitle = "per competitor for the job as CDU chairman")
+
+
+```
+
+## sessionInfo and sources
+
+This analysis has been run with `r R.version$version.string` on `r sessioninfo::os_name()`. 
+
+```{r sessionInfo_sourcesmessage=FALSE, warning=FALSE}
+
+session <- sessioninfo::package_info(include_base = FALSE, dependencies = FALSE)
+
+pander::pander(as_tibble(session)[c("package", "loadedversion", "date", "source")])
+
+```

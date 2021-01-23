@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello R Markdown</title>
+    <title>Bundestag</title>
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -23,13 +23,8 @@
 <link rel="stylesheet" href="/assets/css/style.css" />
 
     
-<meta name="description" content="Hello R Markdown" />
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
-/>
-<link rel="stylesheet" href="/assets/css/layouts/single.css" />
-<link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
+    <link rel="stylesheet" href="/assets/css/layouts/list.css">
+    <link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
 
 
     
@@ -88,6 +83,9 @@ if (!doNotTrack) {
 
       
       
+  
+  
+
   <section class="sidebar-section" id="sidebar-section">
     <div class="sidebar-holder">
       <div class="sidebar" id="sidebar">
@@ -109,135 +107,45 @@ if (!doNotTrack) {
       
       
 <section class="content-section" id="content-section">
-  <div class="content">
-    <div class="container p-0 read-area">
+  <div class="content container-fluid" id="content">
+    <div class="container-fluid post-card-holder" id="post-card-holder">
       
-      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://mylittlejotter.netlify.app/assets/images/default-hero.webp);'>
+      
+        <div class="post-card">
+  <a href="/post/2020-12-30-exploring-bundestag-speeches/" class="post-card-link">
+    <div class="card">
+      <div class="card-head">
+        <img class="card-img-top" src='/assets/images/default-hero.webp'/>
       </div>
-
-      
-      <div class="page-content">
-        <div class="author-profile ml-auto align-self-lg-center">
-          <img class="rounded-circle" src='/assets/images/default-avatar.webp'/>
-          <h5 class="author-name"></h5>
-          <p>July 23, 2015</p>
-        </div>
-
-        <div class="title">
-          <h1>Hello R Markdown</h1>
-        </div>
-
-        <div class="post-content" id="post-content">
-          
-
-
-<div id="r-markdown" class="section level1">
-<h1>R Markdown</h1>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932</code></pre>
-</div>
-<div id="including-plots" class="section level1">
-<h1>Including Plots</h1>
-<p>You can also embed plots. See Figure <a href="#fig:pie">1</a> for example:</p>
-<pre class="r"><code>par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&#39;Sky&#39;, &#39;Sunny side of pyramid&#39;, &#39;Shady side of pyramid&#39;),
-  col = c(&#39;#0292D8&#39;, &#39;#F7EA39&#39;, &#39;#C4B632&#39;),
-  init.angle = -50, border = NA
-)</code></pre>
-<div class="figure"><span id="fig:pie"></span>
-<img src="index_files/figure-html/pie-1.png" alt="A fancy pie chart." width="672" />
-<p class="caption">
-Figure 1: A fancy pie chart.
-</p>
-</div>
-</div>
-
-        </div>
-
-        
-      <hr />
-        <div class="row next-prev-navigator">
-
-
-  
-    
-    
-  
-
-</div>
-
-      <hr />
-      
-      
-          <div id="disqus_thread"></div>
-<script type="text/javascript">
-  (function () {
-    
-    
-    if (window.location.hostname == "localhost") return;
-
-    var dsq = document.createElement("script");
-    dsq.type = "text/javascript";
-    dsq.async = true;
-    var disqus_shortname = "https-mylittlejotter-netlify-app";
-    dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
-    (
-      document.getElementsByTagName("head")[0] ||
-      document.getElementsByTagName("body")[0]
-    ).appendChild(dsq);
-  })();
-</script>
-<noscript
-  >Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.</a
-  ></noscript
->
-<a href="https://disqus.com/" class="dsq-brlink"
-  >comments powered by <span class="logo-disqus">Disqus</span></a
->
-
-      
+      <div class="card-body">
+        <h5 class="card-title">Speeches in german Parliament</h5>
+        <p class="card-text post-summary">Bla bla bla Einleitungsgedöns. Was über die Daten.  Dann kommt der simple Plot.   Und ciao. data %&lt;&gt;% filter(firstName != &quot;Not found&quot;, positionShort == &quot;Member of Parliament&quot;) %&gt;% mutate(year = year(date), full_name = paste(firstName, lastName)) context_data &lt;- data %&gt;% group_by(full_name) %&gt;% filter(year == max(year)) %&gt;% ungroup() %&gt;% select(full_name, positionShort, party = abbreviation) %&gt;% unique() data %&lt;&gt;% group_by(year, full_name) %&gt;% count(name = &quot;sum_speeches&quot;) %&gt;% ungroup() all_years &lt;- tibble(year = seq(min(data$year), max(data$year), 1)) all_combos &lt;- merge(data %&gt;% select(full_name) %&gt;% distinct(), all_years, all = TRUE) all_data_interp &lt;- merge(data, all_combos, all.</p>
+      </div>
+      <div class="card-footer">
+        <span class="float-left">January 22, 2020</span>
+        <a
+        href="/post/2020-12-30-exploring-bundestag-speeches/"
+        class="float-right btn btn-outline-info btn-sm"
+        >Read</a
+        >
       </div>
     </div>
+  </a>
+</div>
+
+      
+    </div>
+    <div class="paginator">
+      
+
+
+    </div>
   </div>
-  
 </section>
 
 
       
-      
-  <section class="toc-section" id="toc-section">
-    
-    <div class="toc-holder">
-      <h5 class="text-center pl-3">Table of Contents</h5>
-      <hr>
-      <div class="toc">
-        
-      </div>
-    </div>
-    
-  </section>
-
+       
     </div>
 
     
@@ -296,12 +204,7 @@ Figure 1: A fancy pie chart.
 
     
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
-<script src="/assets/js/single.js"></script>
-<script>
-  hljs.initHighlightingOnLoad();
-</script>
-
+    <script src="/assets/js/list.js"></script>
 
   </body>
 </html>

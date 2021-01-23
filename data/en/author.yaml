@@ -5,14 +5,14 @@ nickname: "Marcel"
 greeting: "Hi, I am"
 image: "images/avatar.webp"
 # give your some contact information. they will be used in the footer
-# contactInfo:
-#   email: "marcel.gehrke@posteo.de"
-#   phone: "+49 177 598 65 86"
+contactInfo:
+  email: "marcel.gehrke@posteo.de"
+  # phone: "+49 177 598 65 86"
 
 # some summary about what you do
 summary:
   - I am a Data Scientist
-  - I love football
-  - I am a Sociologist
-  - I enjoy museums
-  - I love punk rock
+  - I support Schalke 04
+  - I enjoy art and literature
+  - I will never lose touch to sociology
+  - I am dancing to punk rock

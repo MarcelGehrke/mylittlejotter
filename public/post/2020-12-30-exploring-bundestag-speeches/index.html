@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Exploring Bundestag Speeches</title>
+    <title>Speeches in german Parliament</title>
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="/assets/css/style.css" />
 
     
-<meta name="description" content="Exploring Bundestag Speeches" />
+<meta name="description" content="Speeches in german Parliament" />
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
@@ -103,15 +103,16 @@ if (!doNotTrack) {
         <div class="author-profile ml-auto align-self-lg-center">
           <img class="rounded-circle" src='/assets/images/default-avatar.webp'/>
           <h5 class="author-name"></h5>
-          <p>December 30, 2020</p>
+          <p>January 22, 2020</p>
         </div>
 
         <div class="title">
-          <h1>Exploring Bundestag Speeches</h1>
+          <h1>Speeches in german Parliament</h1>
         </div>
 
         <div class="post-content" id="post-content">
           
+<script src="https://mylittlejotter.netlify.app/post/2020-12-30-exploring-bundestag-speeches/index_files/header-attrs/header-attrs.js"></script>
 
 
 <div id="bla-bla-bla-einleitungsgedöns." class="section level1">
@@ -125,7 +126,447 @@ if (!doNotTrack) {
 </div>
 <div id="und-ciao." class="section level1">
 <h1>Und ciao.</h1>
+<pre class="r"><code>data %&lt;&gt;%
+  filter(firstName != &quot;Not found&quot;,
+         positionShort == &quot;Member of Parliament&quot;) %&gt;%
+  mutate(year = year(date),
+         full_name = paste(firstName, lastName))
+
+context_data &lt;-
+  data %&gt;%
+  group_by(full_name) %&gt;%
+  filter(year == max(year)) %&gt;%
+  ungroup() %&gt;%
+  select(full_name,
+         positionShort,
+         party = abbreviation) %&gt;%
+  unique()
+
+data %&lt;&gt;%
+  group_by(year, full_name) %&gt;%
+  count(name = &quot;sum_speeches&quot;) %&gt;%
+  ungroup()
+
+all_years &lt;- tibble(year = seq(min(data$year), max(data$year), 1))
+
+all_combos &lt;- merge(data %&gt;%
+                      select(full_name) %&gt;%
+                      distinct(), all_years, all = TRUE)
+
+all_data_interp &lt;- merge(data, all_combos, all.y = TRUE)
+
+all_data_interp %&lt;&gt;%
+  mutate(sum_speeches = if_else(is.na(sum_speeches), 0L, sum_speeches)) %&gt;%
+  group_by(full_name) %&gt;%
+  mutate(speeches_cum = cumsum(sum_speeches)) %&gt;%
+  ungroup() %&gt;%
+  left_join(context_data, by = &quot;full_name&quot;)
+
+plot_data &lt;-
+  all_data_interp %&gt;%
+  group_by(year) %&gt;%
+  arrange(-speeches_cum) %&gt;%
+  mutate(rank = row_number()) %&gt;%
+  filter(rank &lt;= 15) %&gt;%
+  ungroup()
+
+plot_data %&lt;&gt;%
+  mutate(party = if_else(
+    party %in% c(&quot;BP&quot;, &quot;DA&quot;, &quot;DP&quot;, &quot;FU&quot;, &quot;KPD&quot;, &quot;WAV&quot;, &quot;GB/BHE&quot;), 
+    &quot;other&quot;,
+    party
+  ))
+
+cols &lt;-
+  c(
+    &quot;CDU/CSU&quot; = &quot;#000000&quot;,
+    &quot;DIE LINKE.&quot; = &quot;#DF044D&quot;,
+    &quot;FDP&quot; = &quot;#FFED00&quot;,
+    &quot;Grüne&quot; = &quot;#347020&quot;,
+    &quot;other&quot; = &quot;grey&quot;,
+    &quot;SPD&quot; = &quot;#E30400&quot;
+  )</code></pre>
+<pre class="r"><code>plot_theme &lt;- theme_bw() +
+  theme(
+    plot.title = element_text(size = 40, face = &quot;bold&quot;, hjust = 0.5),
+    plot.caption = element_text(size = 20),
+    plot.subtitle = element_text(size = 30, hjust = 0.5),
+    plot.background = element_rect(fill = &quot;#f9fafc&quot;),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.background = element_rect(fill = &quot;#f9fafc&quot;),
+    panel.border = element_blank(),
+    legend.background = element_rect(fill = &quot;#f9fafc&quot;),
+    legend.text = element_text(size = 20),
+    legend.title = element_text(size = 20),
+    legend.position = &quot;bottom&quot;,
+    axis.text.y = element_blank(),
+    axis.text.x = element_blank()
+  )</code></pre>
 <p><img src="plot.gif" /></p>
+<div id="merkels-successor" class="section level2">
+<h2>Merkels successor?</h2>
+<p>On the 16th of January the CDU, which is Angela Merkels conservative party and also the biggest group in the german Bundestag voted for Armin Laschet as new party chairman. He and his two competitors are white, male lawyers from North Rhine-Westphalia. It’s justifiable to assume that Laschet or Markus Söder member of the CDUs even more conservative bavarian sister party will become Merkels successor as chancellor.</p>
+<pre class="r"><code>plot_cdu_data &lt;-
+  all_data_interp %&gt;%
+  filter(year == 2020,
+         full_name %in% c(&quot;Armin Laschet&quot;,
+                          &quot;Norbert Röttgen&quot;,
+                          &quot;Friedrich Merz&quot;)) %&gt;%
+  group_by(year) %&gt;%
+  arrange(-speeches_cum) %&gt;%
+  mutate(rank = row_number()) %&gt;%
+  ungroup()</code></pre>
+<pre class="r"><code>plot_cdu_data %&gt;%
+  ggplot(aes(x = -rank, y = speeches_cum, group = full_name)) +
+  geom_col(aes(y = speeches_cum / 2, fill = party),
+           alpha = 0.8,
+           width = 0.9) +
+  geom_text(
+    aes(label = full_name),
+    hjust = &quot;right&quot;,
+    colour = &quot;black&quot;,
+    fontface = &quot;bold&quot;,
+    nudge_y = 120,
+    size = 10
+  ) +
+  geom_text(
+    aes(label = scales::number(speeches_cum, accuracy = 1)),
+    hjust = &quot;left&quot;,
+    nudge_y = 130,
+    colour = &quot;grey30&quot;,
+    size = 10
+  ) +
+  coord_flip(clip = &quot;off&quot;) +
+  scale_x_discrete(&quot;&quot;) +
+  scale_y_continuous(&quot;&quot;, labels = scales::number) +
+  plot_theme + 
+  theme(legend.position = &quot;none&quot;) +
+  scale_fill_manual(values = cols) +
+  labs(title = &quot;Number of speeches at the Bundestag&quot;,
+       subtitle = &quot;per competitor for the job as CDU chairman&quot;)</code></pre>
+<p><img src="https://mylittlejotter.netlify.app/post/2020-12-30-exploring-bundestag-speeches/index_files/figure-html/cdu_chairman_plot-1.png" width="672" /></p>
+</div>
+<div id="sessioninfo-and-sources" class="section level2">
+<h2>sessionInfo and sources</h2>
+<p>This analysis has been run with R version 4.0.3 (2020-10-10) on Pop!_OS 20.10.</p>
+<pre class="r"><code>session &lt;- sessioninfo::package_info(include_base = FALSE, dependencies = FALSE)
+
+pander::pander(as_tibble(session)[c(&quot;package&quot;, &quot;loadedversion&quot;, &quot;date&quot;, &quot;source&quot;)], rownames = FALSE) </code></pre>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="22%" />
+<col width="18%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">package</th>
+<th align="center">loadedversion</th>
+<th align="center">date</th>
+<th align="center">source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">assertthat</td>
+<td align="center">0.2.1</td>
+<td align="center">2019-03-21</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">blogdown</td>
+<td align="center">0.21.71</td>
+<td align="center">2021-01-02</td>
+<td align="center">Github
+(<a href="mailto:rstudio/blogdown@d04fd17" class="email">rstudio/blogdown@d04fd17</a>)</td>
+</tr>
+<tr class="odd">
+<td align="center">bookdown</td>
+<td align="center">0.21</td>
+<td align="center">2020-10-13</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">cli</td>
+<td align="center">2.2.0</td>
+<td align="center">2020-11-20</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">colorspace</td>
+<td align="center">2.0-0</td>
+<td align="center">2020-11-11</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">crayon</td>
+<td align="center">1.3.4</td>
+<td align="center">2017-09-16</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">digest</td>
+<td align="center">0.6.27</td>
+<td align="center">2020-10-24</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">dplyr</td>
+<td align="center">1.0.2</td>
+<td align="center">2020-08-18</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">ellipsis</td>
+<td align="center">0.3.1</td>
+<td align="center">2020-05-15</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">evaluate</td>
+<td align="center">0.14</td>
+<td align="center">2019-05-28</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">fansi</td>
+<td align="center">0.4.1</td>
+<td align="center">2020-01-08</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">farver</td>
+<td align="center">2.0.3</td>
+<td align="center">2020-01-16</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">generics</td>
+<td align="center">0.1.0</td>
+<td align="center">2020-10-31</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">gganimate</td>
+<td align="center">1.0.7</td>
+<td align="center">2020-10-15</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">ggplot2</td>
+<td align="center">3.3.2</td>
+<td align="center">2020-06-19</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">gifski</td>
+<td align="center">0.8.6</td>
+<td align="center">2018-09-28</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">glue</td>
+<td align="center">1.4.2</td>
+<td align="center">2020-08-27</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">gtable</td>
+<td align="center">0.3.0</td>
+<td align="center">2019-03-25</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">hms</td>
+<td align="center">0.5.3</td>
+<td align="center">2020-01-08</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">htmltools</td>
+<td align="center">0.5.0</td>
+<td align="center">2020-06-16</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">knitr</td>
+<td align="center">1.30</td>
+<td align="center">2020-09-22</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">labeling</td>
+<td align="center">0.4.2</td>
+<td align="center">2020-10-20</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">lattice</td>
+<td align="center">0.20-41</td>
+<td align="center">2020-04-02</td>
+<td align="center">CRAN (R 4.0.0)</td>
+</tr>
+<tr class="even">
+<td align="center">lifecycle</td>
+<td align="center">0.2.0</td>
+<td align="center">2020-03-06</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">lubridate</td>
+<td align="center">1.7.9.2</td>
+<td align="center">2020-11-13</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">magrittr</td>
+<td align="center">2.0.1</td>
+<td align="center">2020-11-17</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">munsell</td>
+<td align="center">0.5.0</td>
+<td align="center">2018-06-12</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">pander</td>
+<td align="center">0.6.3</td>
+<td align="center">2018-11-06</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">pillar</td>
+<td align="center">1.4.7</td>
+<td align="center">2020-11-20</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">pkgconfig</td>
+<td align="center">2.0.3</td>
+<td align="center">2019-09-22</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">prettyunits</td>
+<td align="center">1.1.1</td>
+<td align="center">2020-01-24</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">progress</td>
+<td align="center">1.2.2</td>
+<td align="center">2019-05-16</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">purrr</td>
+<td align="center">0.3.4</td>
+<td align="center">2020-04-17</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">R6</td>
+<td align="center">2.5.0</td>
+<td align="center">2020-10-28</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">Rcpp</td>
+<td align="center">1.0.5</td>
+<td align="center">2020-07-06</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">rlang</td>
+<td align="center">0.4.9</td>
+<td align="center">2020-11-26</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">rmarkdown</td>
+<td align="center">2.6</td>
+<td align="center">2020-12-14</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">scales</td>
+<td align="center">1.1.1</td>
+<td align="center">2020-05-11</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">sessioninfo</td>
+<td align="center">1.1.1</td>
+<td align="center">2018-11-05</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">stringi</td>
+<td align="center">1.5.3</td>
+<td align="center">2020-09-09</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">stringr</td>
+<td align="center">1.4.0</td>
+<td align="center">2019-02-10</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">tibble</td>
+<td align="center">3.0.4</td>
+<td align="center">2020-10-12</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">tidyselect</td>
+<td align="center">1.1.0</td>
+<td align="center">2020-05-11</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">tweenr</td>
+<td align="center">1.0.1</td>
+<td align="center">2018-12-14</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">vctrs</td>
+<td align="center">0.3.6</td>
+<td align="center">2020-12-17</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">withr</td>
+<td align="center">2.3.0</td>
+<td align="center">2020-09-22</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">xfun</td>
+<td align="center">0.19</td>
+<td align="center">2020-10-30</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="even">
+<td align="center">yaml</td>
+<td align="center">2.2.1</td>
+<td align="center">2020-02-01</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+<tr class="odd">
+<td align="center">zoo</td>
+<td align="center">1.8-8</td>
+<td align="center">2020-05-02</td>
+<td align="center">CRAN (R 4.0.3)</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 
         </div>
@@ -144,6 +585,35 @@ if (!doNotTrack) {
 
       <hr />
       
+      
+          <div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function () {
+    
+    
+    if (window.location.hostname == "localhost") return;
+
+    var dsq = document.createElement("script");
+    dsq.type = "text/javascript";
+    dsq.async = true;
+    var disqus_shortname = "https-mylittlejotter-netlify-app";
+    dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+    (
+      document.getElementsByTagName("head")[0] ||
+      document.getElementsByTagName("body")[0]
+    ).appendChild(dsq);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+<a href="https://disqus.com/" class="dsq-brlink"
+  >comments powered by <span class="logo-disqus">Disqus</span></a
+>
+
       
       </div>
     </div>
