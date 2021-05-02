@@ -46,6 +46,8 @@ data <- readRDS("speeches_data.RDS")
 
 ```
 
+#### Prepare the data
+
 ```{r prep_chart_data, message=FALSE, warning=FALSE}
 
 data %<>%
@@ -110,6 +112,8 @@ cols <-
   )
 ```
 
+#### Customize the plot theme
+
 ```{r custom_plot_theme, message=FALSE, warning=FALSE}
 
 plot_theme <- theme_bw() +
@@ -132,7 +136,9 @@ plot_theme <- theme_bw() +
 
 ```
 
-```{r plot, eval=FALSE, include=FALSE}
+#### Build the plot
+
+```{r plot, eval=FALSE}
 
 plot <-
   plot_data %>%
@@ -176,7 +182,7 @@ plot_gif <-
     height = 1000
   )
 
-anim_save("plot.gif", plot_gif)
+#anim_save("plot.gif", plot_gif)
 ```
 
 ### Sources

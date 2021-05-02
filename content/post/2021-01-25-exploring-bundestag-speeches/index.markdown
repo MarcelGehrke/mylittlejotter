@@ -31,6 +31,8 @@ Code below.
 
 
 
+#### Prepare the data
+
 
 ```r
 data %<>%
@@ -95,6 +97,8 @@ cols <-
   )
 ```
 
+#### Customize the plot theme
+
 
 ```r
 plot_theme <- theme_bw() +
@@ -116,7 +120,54 @@ plot_theme <- theme_bw() +
   )
 ```
 
+#### Build the plot
 
+
+```r
+plot <-
+  plot_data %>%
+  ggplot(aes(x = -rank, y = speeches_cum, group = full_name)) +
+  geom_col(aes(y = speeches_cum / 2, fill = party),
+           alpha = 0.8,
+           width = 0.9) +
+  geom_text(
+    aes(label = full_name),
+    hjust = "right",
+    colour = "black",
+    fontface = "bold",
+    nudge_y = -10,
+    size = 10
+  ) +
+  geom_text(
+    aes(label = scales::number(speeches_cum, accuracy = 1)),
+    hjust = "left",
+    nudge_y = -0,
+    colour = "grey30",
+    size = 10
+  ) +
+  coord_flip(clip = "off") +
+  scale_x_discrete("") +
+  scale_y_continuous("", labels = scales::number) +
+  scale_fill_manual(values = cols) +
+  plot_theme + 
+  labs(title = "Number of speeches by member of the Bundestag",
+       caption = "Secretaries of state as well as administrative positions are excluded",
+       subtitle = "1949 - {round(frame_time, 0)}") +
+  ease_aes("cubic-in-out") +
+  transition_time(year) 
+
+plot_gif <-
+  animate(
+    plot,
+    nframes = 700,
+    end_pause = 42,
+    start_pause = 10,
+    width = 1816,
+    height = 1000
+  )
+
+#anim_save("plot.gif", plot_gif)
+```
 
 ### Sources
 
