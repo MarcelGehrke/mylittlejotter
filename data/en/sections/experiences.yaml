@@ -17,10 +17,14 @@ experiences:
     # company overview
     overview: ARAG SE is germanys largest family-owned insurance company. It's among the leading legal expenses insurances worldwide.
   positions:
+  - designation: Data Scientist | SME Sales Analytics
+    start: April 2021
+    responsibilities:
+    - Analytics driven focus on clients needs, sales partners success and ARAGs sales strategy.
   - designation: Data Scientist
     start: April 2018
     # don't provide end date if you are currently working there. It will be replaced by "Present"
-    # end: Dec 2020
+    end: March 2021
     # give some points about what was your responsibilities at the company.
     responsibilities:
     - Providing data‑driven and evidence based solutions to organization‑wide problems using state of the art algorithms and modelling techniques.

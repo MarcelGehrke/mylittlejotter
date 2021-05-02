@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Society</title>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/css/layouts/main.css" />
+<link rel="stylesheet" href="/assets/css/style.css" />
+<link rel="stylesheet" href="/assets/css/navigators/navbar.css" />
+
+
+<link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+
+<link rel="icon" type="image/webp" href="https://mylittlejotter.netlify.app/assets/images/main-logo.webp" />
+
+
+<link rel="stylesheet" href="/assets/css/style.css" />
+
+    
+    <link rel="stylesheet" href="/assets/css/layouts/list.css">
+    <link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
+
+
+    
+    
+  </head>
+
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
+    <div class="container-fluid bg-dimmed wrapper">
+      
+      
+    
+
+
+  
+
+
+  
+
+
+<nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+      <img src="https://mylittlejotter.netlify.app/assets/images/main-logo.webp">my little jotter</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse lang-selector" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      
+      </ul>
+    </div>
+  </div>
+  
+  <img src="https://mylittlejotter.netlify.app/assets/images/main-logo.webp" class="d-none" id="main-logo">
+  <img src="https://mylittlejotter.netlify.app/assets/images/inverted-logo.webp" class="d-none" id="inverted-logo">
+</nav>
+
+
+
+      
+      
+  
+  
+
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <input type="text" value="" placeholder="Search" data-search="" id="search-box" />
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="https://mylittlejotter.netlify.app/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content container-fluid" id="content">
+    <div class="container-fluid post-card-holder" id="post-card-holder">
+      
+      
+        <div class="post-card">
+  <a href="/post/2021-01-25-exploring-bundestag-speeches/" class="post-card-link">
+    <div class="card">
+      <div class="card-head">
+        <img class="card-img-top" src='/assets/images/default-hero.webp'/>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Exploring Bundestag speeches</h5>
+        <p class="card-text post-summary">tl;dr gganimate is great to visualize time-dependent data. E.g. Open Discourse, a well designed comprehensive, machine readable open-source corpus of the plenary proceedings of the federal German Parliament.
+Bla bla bla Einleitungsgedöns. Was über die Daten. Dann kommt der simple Plot. Und ciao. data %&lt;&gt;% filter(firstName != &#34;Not found&#34;, positionShort == &#34;Member of Parliament&#34;) %&gt;% mutate(year = year(date), full_name = paste(firstName, lastName)) context_data &lt;- data %&gt;% group_by(full_name) %&gt;% filter(year == max(year)) %&gt;% ungroup() %&gt;% select(full_name, positionShort, party = abbreviation) %&gt;% unique() data %&lt;&gt;% group_by(year, full_name) %&gt;% count(name = &#34;sum_speeches&#34;) %&gt;% ungroup() all_years &lt;- tibble(year = seq(min(data$year), max(data$year), 1)) all_combos &lt;- merge(data %&gt;% select(full_name) %&gt;% distinct(), all_years, all = TRUE) all_data_interp &lt;- merge(data, all_combos, all.</p>
+      </div>
+      <div class="card-footer">
+        <span class="float-left">January 25, 2021</span>
+        <a
+        href="/post/2021-01-25-exploring-bundestag-speeches/"
+        class="float-right btn btn-outline-info btn-sm"
+        >Read</a
+        >
+      </div>
+    </div>
+  </a>
+</div>
+
+      
+    </div>
+    <div class="paginator">
+      
+
+
+    </div>
+  </div>
+</section>
+
+
+      
+       
+    </div>
+
+    
+
+  
+
+
+
+
+  
+
+
+
+
+  
+  
+    
+  
+
+
+<footer class="container-fluid text-center align-content-center footer pb-2">
+      </div>
+      
+    </div>
+  </div>
+  <hr />
+  <div class="container">
+    <div class="row text-left">
+      <div class="col-md-4">
+        <a id="theme" href="https://github.com/hossainemruz/toha" target="#">
+          <img src="/assets/images/toha-logo.webp">
+          Toha
+        </a>
+      </div>
+      <div class="col-md-4 text-center">© 2020 Copyright.</div>
+      <div class="col-md-4 text-right">
+        <a id="hugo" href="https://gohugo.io/">Powered by
+        <img
+          src="/assets/images/hugo-logo-wide.svg"
+          alt="Hugo Logo"
+          height="18"
+        />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+
+<script src="/assets/js/navbar.js"></script>
+<script src="/assets/js/main.js"></script>
+
+
+    
+    
+    <script src="/assets/js/list.js"></script>
+
+  </body>
+</html>

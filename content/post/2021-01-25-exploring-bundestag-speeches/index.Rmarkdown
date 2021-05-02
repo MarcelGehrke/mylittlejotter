@@ -1,0 +1,196 @@
+---
+title: Exploring Bundestag speeches
+author: Marcel
+date: '2021-05-02'
+slug: []
+categories:
+  - R
+tags:
+  - Open Data
+  - Society
+  - Politics
+  - R
+hero: /assets/images/default-hero.webp
+---
+
+# tl;dr
+
+[gganimate](https://gganimate.com/index.html "gganimate") is great to visualize time-dependent data. E.g. [Open Discourse](https://opendiscourse.de/ "Open Discourse"), a well designed comprehensive, machine readable open-source corpus of the plenary proceedings of the federal German Parliament.
+
+# Plotting Bundestag speeches
+
+The plot below shows the summed speeches of politicians in the german Bundestag by Year. The colors are indicating the party each politician belongs to.
+
+Honestly, this is mostly a quick proof of concept on publishing a website via Git commits, utilizing [Hugo](https://gohugo.io/), R [blogdown](https://bookdown.org/yihui/blogdown/) and [Netlify](https://www.netlify.com/).
+
+Code below.
+
+![](plot.gif)
+
+```{r library_calls, message=FALSE, warning=FALSE, include=FALSE}
+
+library(ggplot2)
+library(magrittr)
+library(dplyr)
+library(gganimate)
+library(lubridate)
+library(purrr)
+library(zoo)
+library(pander)
+
+```
+
+```{r read_data, message=FALSE, warning=FALSE, include=FALSE}
+
+data <- readRDS("speeches_data.RDS")
+
+```
+
+```{r prep_chart_data, message=FALSE, warning=FALSE}
+
+data %<>%
+  filter(firstName != "Not found",
+         positionShort == "Member of Parliament") %>%
+  mutate(year = year(date),
+         full_name = paste(firstName, lastName))
+
+context_data <-
+  data %>%
+  group_by(full_name) %>%
+  filter(year == max(year)) %>%
+  ungroup() %>%
+  select(full_name,
+         positionShort,
+         party = abbreviation) %>%
+  unique()
+
+data %<>%
+  group_by(year, full_name) %>%
+  count(name = "sum_speeches") %>%
+  ungroup()
+
+all_years <- tibble(year = seq(min(data$year), max(data$year), 1))
+
+all_combos <- merge(data %>%
+                      select(full_name) %>%
+                      distinct(), all_years, all = TRUE)
+
+all_data_interp <- merge(data, all_combos, all.y = TRUE)
+
+all_data_interp %<>%
+  mutate(sum_speeches = if_else(is.na(sum_speeches), 0L, sum_speeches)) %>%
+  group_by(full_name) %>%
+  mutate(speeches_cum = cumsum(sum_speeches)) %>%
+  ungroup() %>%
+  left_join(context_data, by = "full_name")
+
+plot_data <-
+  all_data_interp %>%
+  group_by(year) %>%
+  arrange(-speeches_cum) %>%
+  mutate(rank = row_number()) %>%
+  filter(rank <= 15) %>%
+  ungroup()
+
+plot_data %<>%
+  mutate(party = if_else(
+    party %in% c("BP", "DA", "DP", "FU", "KPD", "WAV", "GB/BHE"), 
+    "other",
+    party
+  ))
+
+cols <-
+  c(
+    "CDU/CSU" = "#000000",
+    "DIE LINKE." = "#DF044D",
+    "FDP" = "#FFED00",
+    "Grüne" = "#347020",
+    "other" = "grey",
+    "SPD" = "#E30400"
+  )
+```
+
+```{r custom_plot_theme, message=FALSE, warning=FALSE}
+
+plot_theme <- theme_bw() +
+  theme(
+    plot.title = element_text(size = 40, face = "bold", hjust = 0.5),
+    plot.caption = element_text(size = 20),
+    plot.subtitle = element_text(size = 30, hjust = 0.5),
+    plot.background = element_rect(fill = "#f9fafc"),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.background = element_rect(fill = "#f9fafc"),
+    panel.border = element_blank(),
+    legend.background = element_rect(fill = "#f9fafc"),
+    legend.text = element_text(size = 20),
+    legend.title = element_text(size = 20),
+    legend.position = "bottom",
+    axis.text.y = element_blank(),
+    axis.text.x = element_blank()
+  )
+
+```
+
+```{r plot, eval=FALSE, include=FALSE}
+
+plot <-
+  plot_data %>%
+  ggplot(aes(x = -rank, y = speeches_cum, group = full_name)) +
+  geom_col(aes(y = speeches_cum / 2, fill = party),
+           alpha = 0.8,
+           width = 0.9) +
+  geom_text(
+    aes(label = full_name),
+    hjust = "right",
+    colour = "black",
+    fontface = "bold",
+    nudge_y = -10,
+    size = 10
+  ) +
+  geom_text(
+    aes(label = scales::number(speeches_cum, accuracy = 1)),
+    hjust = "left",
+    nudge_y = -0,
+    colour = "grey30",
+    size = 10
+  ) +
+  coord_flip(clip = "off") +
+  scale_x_discrete("") +
+  scale_y_continuous("", labels = scales::number) +
+  scale_fill_manual(values = cols) +
+  plot_theme + 
+  labs(title = "Number of speeches by member of the Bundestag",
+       caption = "Secretaries of state as well as administrative positions are excluded",
+       subtitle = "1949 - {round(frame_time, 0)}") +
+  ease_aes("cubic-in-out") +
+  transition_time(year) 
+
+plot_gif <-
+  animate(
+    plot,
+    nframes = 700,
+    end_pause = 42,
+    start_pause = 10,
+    width = 1816,
+    height = 1000
+  )
+
+anim_save("plot.gif", plot_gif)
+```
+
+### Sources
+
+Richter, F.; Koch, P.; Franke, O.; Kraus, J.; Kuruc, F.; Thiem, A.; Högerl, J.; Heine, S.; Schöps, K., 2020, "Open Discourse", <https://doi.org/10.7910/DVN/FIKIBO,> Harvard Dataverse
+
+Pedersen, T. L.; Robinson, D., 2020. "[gganimate](https://gganimate.com/index.html "gganimate"): A Grammar of Animated Graphics", R package version 1.0.7.
+
+Xie, Y; Hill, A., P.; Thomas, A., 2020. "[blogdown](https://bookdown.org/yihui/blogdown/): Create Blogs and Websites with R Markdown", R package version 0.21.71
+
+Further setup below:
+
+```{r session_info, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+
+sessionInfo()
+
+```

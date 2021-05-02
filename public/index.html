@@ -34,19 +34,6 @@
 
     
     
-        
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-8568137-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-    
   </head>
   <body data-spy="scroll" data-target="#top-navbar" data-offset="100">
 
@@ -231,7 +218,7 @@ if (!doNotTrack) {
     <div class="row" id="recent-post-cards">
       
         <div class="col-lg-4 col-md-6 pt-2 post-card">
-  <a href="/post/2020-12-30-exploring-bundestag-speeches/" class="post-card-link">
+  <a href="/post/2021-01-25-exploring-bundestag-speeches/" class="post-card-link">
     <div class="card">
       <div class="card-head">
         <img class="card-img-top" src='/assets/images/default-hero.webp'
@@ -239,12 +226,13 @@ if (!doNotTrack) {
         />
       </div>
       <div class="card-body">
-        <h5 class="card-title">Speeches in german Parliament</h5>
-        <p class="card-text post-summary"> Bla bla bla Einleitungsgedöns. Was über die Daten.  Dann kommt der simple Plot.   Und ciao. data %&lt;&gt;% filter(firstName != &quot;Not found&quot;, positionShort == &quot;Member of Parliament&quot;) %&gt;% mutate(year = year(date), full_name = paste(firstName, lastName)) context_data &lt;- data %&gt;% group_by(full_name) %&gt;% filter(year == max(year)) %&gt;% ungroup() %&gt;% select(full_name, positionShort, party = abbreviation) %&gt;% unique() data %&lt;&gt;% group_by(year, full_name) %&gt;% count(name = &quot;sum_speeches&quot;) %&gt;% ungroup() all_years &lt;- tibble(year = seq(min(data$year), max(data$year), 1)) all_combos &lt;- merge(data %&gt;% select(full_name) %&gt;% distinct(), all_years, all = TRUE) all_data_interp &lt;- merge(data, all_combos, all.</p>
+        <h5 class="card-title">Exploring Bundestag speeches</h5>
+        <p class="card-text post-summary"> tl;dr gganimate is great to visualize time-dependent data. E.g. Open Discourse, a well designed comprehensive, machine readable open-source corpus of the plenary proceedings of the federal German Parliament.
+Bla bla bla Einleitungsgedöns. Was über die Daten. Dann kommt der simple Plot. Und ciao. data %&lt;&gt;% filter(firstName != &#34;Not found&#34;, positionShort == &#34;Member of Parliament&#34;) %&gt;% mutate(year = year(date), full_name = paste(firstName, lastName)) context_data &lt;- data %&gt;% group_by(full_name) %&gt;% filter(year == max(year)) %&gt;% ungroup() %&gt;% select(full_name, positionShort, party = abbreviation) %&gt;% unique() data %&lt;&gt;% group_by(year, full_name) %&gt;% count(name = &#34;sum_speeches&#34;) %&gt;% ungroup() all_years &lt;- tibble(year = seq(min(data$year), max(data$year), 1)) all_combos &lt;- merge(data %&gt;% select(full_name) %&gt;% distinct(), all_years, all = TRUE) all_data_interp &lt;- merge(data, all_combos, all.</p>
       </div>
       <div class="card-footer">
-        <span class="float-left">January 22, 2020</span>
-        <a href="/post/2020-12-30-exploring-bundestag-speeches/" class="float-right btn btn-outline-info btn-sm">Read</a>
+        <span class="float-left">January 25, 2021</span>
+        <a href="/post/2021-01-25-exploring-bundestag-speeches/" class="float-right btn btn-outline-info btn-sm">Read</a>
       </div>
     </div>
   </a>

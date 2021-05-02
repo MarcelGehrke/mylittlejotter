@@ -12,17 +12,17 @@ section:
 skills:
 - name: "R"
   icon: "images/skills/R.webp"
-  summary: "Capable of using R for the whole data science lifecycle. Recently experimenting with Keras to build deep learning models."
+  summary: "Capable of using R for the whole data science lifecycle."
   url: "https://www.r-project.org/"
 
 - name: "tidyverse"
   icon: "images/skills/tidyverse.png"
-  summary: "Intensive usage of the tidyverse, it's coding style and harmonizing packages like magrittr and rmarkdown."
+  summary: "Intensive usage of the tidyverse, it's coding style and related packages."
   url: "https://www.tidyverse.org/"
 
 - name: "shiny"
   icon: "images/skills/shiny.png"
-  summary: "Developing and maintaining highly tailored interactive apps. Experienced with modularization, shinydashboards and more."
+  summary: "Developing and maintaining highly tailored interactive apps."
   url: "https://shiny.rstudio.com/"
 
 # - name: "Python"
@@ -32,16 +32,16 @@ skills:
 
 - name: "Git"
   icon: "images/skills/git.webp"
-  summary: "Collaborative and reproducible development using Github and Bitbucket."
+  summary: "Collaborative and reproducible development using Git."
   url: "https://git-scm.com/"
 
 - name: "Databases"
   icon: "images/skills/database.svg"
-  summary: "Extracting data from PostgreSQL, MSSQL and MonetDBLite databases."
+  summary: "Extracting data from various SQL databases, e.g. PostgreSQL."
 
 - name: "Other"
   icon: "images/skills/cms.svg"
-  summary: "Beginner level Python. Sometimes playing around with Raspberry Pies. Other stats and BI tools: STATA, SPSS, LISREL, Power BI."
+  summary: "Beginner level Python. Linux newbie. More stats and BI tools: STATA, SPSS, LISREL, Power BI."
 
 # - name: "Power BI"
 #   icon: "images/skills/power_bi.svg"
