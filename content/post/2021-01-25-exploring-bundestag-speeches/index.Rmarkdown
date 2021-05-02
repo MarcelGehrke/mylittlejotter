@@ -25,8 +25,11 @@ Honestly, this is mostly a quick proof of concept on publishing a website via Gi
 
 Code below.
 
+<center>
+
 ![](plot.gif)
 
+</center>
 ```{r library_calls, message=FALSE, warning=FALSE, include=FALSE}
 
 library(ggplot2)
@@ -157,7 +160,7 @@ plot <-
   geom_text(
     aes(label = scales::number(speeches_cum, accuracy = 1)),
     hjust = "left",
-    nudge_y = -0,
+    nudge_y = -1,
     colour = "grey30",
     size = 10
   ) +
@@ -175,14 +178,15 @@ plot <-
 plot_gif <-
   animate(
     plot,
-    nframes = 700,
-    end_pause = 42,
-    start_pause = 10,
-    width = 1816,
-    height = 1000
+    nframes = 496,
+    fps = 16,
+    end_pause = 2,
+    start_pause = 3,
+    width = 1200,
+    height = 670
   )
 
-#anim_save("plot.gif", plot_gif)
+anim_save("plot.gif", plot_gif)
 ```
 
 ### Sources
