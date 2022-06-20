@@ -18,7 +18,7 @@ company:
 # resume: "files/CV.pdf"
 
 # a summary about you
-summary: 'I am a passionate Data Scientist who enjoys delivering evidence based, data-driven insights and solutions. Recently becoming more and more interested in portfolio modelling. Linux newbie.'
+summary: 'I am a passionate Data Scientist who enjoys delivering evidence based, data-driven insights and solutions.'
 
 # give as many as you want. use font-awesome for the icons.
 socialLinks:
@@ -34,9 +34,9 @@ socialLinks:
   icon: "fab fa-linkedin"
   url: "https://www.linkedin.com/in/marcel-gehrke-222540111/"
 
-- name: Email
-  icon: "fas fa-envelope"
-  url: "marcel.gehrke@posteo.de"
+# - name: Email
+#   icon: "fas fa-envelope"
+#   url: "marcel.gehrke@posteo.de"
 
 # your soft skills
 # give the percentage between 50 to 100 with 5 intervals.
