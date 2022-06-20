@@ -6,15 +6,16 @@
     <description>Recent content in R on my little jotter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://mylittlejotter.netlify.app/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://mylittlejotter.netlify.app/tags/r/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Exploring Bundestag speeches</title>
       <link>https://mylittlejotter.netlify.app/post/2021-01-25-exploring-bundestag-speeches/</link>
-      <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://mylittlejotter.netlify.app/post/2021-01-25-exploring-bundestag-speeches/</guid>
       <description>tl;dr gganimate is great to visualize time-dependent data. E.g. Open Discourse, a well designed comprehensive, machine readable open-source corpus of the plenary proceedings of the federal German Parliament.
-Bla bla bla Einleitungsgedöns. Was über die Daten. Dann kommt der simple Plot. Und ciao. data %&amp;lt;&amp;gt;% filter(firstName != &amp;#34;Not found&amp;#34;, positionShort == &amp;#34;Member of Parliament&amp;#34;) %&amp;gt;% mutate(year = year(date), full_name = paste(firstName, lastName)) context_data &amp;lt;- data %&amp;gt;% group_by(full_name) %&amp;gt;% filter(year == max(year)) %&amp;gt;% ungroup() %&amp;gt;% select(full_name, positionShort, party = abbreviation) %&amp;gt;% unique() data %&amp;lt;&amp;gt;% group_by(year, full_name) %&amp;gt;% count(name = &amp;#34;sum_speeches&amp;#34;) %&amp;gt;% ungroup() all_years &amp;lt;- tibble(year = seq(min(data$year), max(data$year), 1)) all_combos &amp;lt;- merge(data %&amp;gt;% select(full_name) %&amp;gt;% distinct(), all_years, all = TRUE) all_data_interp &amp;lt;- merge(data, all_combos, all.</description>
+Plotting Bundestag speeches The plot below shows the summed speeches of politicians in the german Bundestag by Year. The colors are indicating the party each politician belongs to.
+Honestly, this is mostly a quick proof of concept on publishing a website via Git commits, utilizing Hugo, R blogdown and Netlify.</description>
     </item>
     
   </channel>
