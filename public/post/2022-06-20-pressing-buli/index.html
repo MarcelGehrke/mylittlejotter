@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pressingzonen Bundesliga Saison 2021/2022</title>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/css/layouts/main.css" />
+<link rel="stylesheet" href="/assets/css/style.css" />
+<link rel="stylesheet" href="/assets/css/navigators/navbar.css" />
+
+
+<link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+
+<link rel="icon" type="image/webp" href="https://mylittlejotter.netlify.app/assets/images/main-logo.webp" />
+
+
+<link rel="stylesheet" href="/assets/css/style.css" />
+
+    
+<meta name="description" content="Pressingzonen Bundesliga Saison 2021/2022" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
+/>
+<link rel="stylesheet" href="/assets/css/layouts/single.css" />
+<link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
+
+
+    
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-RGE94BL9P7', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </head>
+
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
+    <div class="container-fluid bg-dimmed wrapper">
+      
+      
+    
+
+
+  
+
+
+  
+
+
+<nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+      <img src="https://mylittlejotter.netlify.app/assets/images/main-logo.webp">my little jotter</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse lang-selector" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      
+      </ul>
+    </div>
+  </div>
+  
+  <img src="https://mylittlejotter.netlify.app/assets/images/main-logo.webp" class="d-none" id="main-logo">
+  <img src="https://mylittlejotter.netlify.app/assets/images/inverted-logo.webp" class="d-none" id="inverted-logo">
+</nav>
+
+
+
+      
+       
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://mylittlejotter.netlify.app/assets/images/default-hero.webp);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/assets/images/default-avatar.webp'/>
+          <h5 class="author-name"></h5>
+          <p>June 20, 2022</p>
+        </div>
+
+        <div class="title">
+          <h1>Pressingzonen Bundesliga Saison 2021/2022</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          
+
+
+<div id="tldr" class="section level1">
+<h1>tl;dr</h1>
+<p>Die erfolgreichsten Bundesliga Teams der Saison 2021/2022 - Bayern München und Borussia Dortmund - stechen wieder durch Angriffspressing hervor. In Kombination mit hochwertigen Kadern führt dies zu den meisten erzielten Toren und, zumindest im Fall des FC Bayern, zu wenigen Gegentoren.</p>
+<p>Aber auch Teams mit weniger teuren Kadern wie Hoffenheim und der 1. FC Köln pressen relativ hoch. Im Falle der Kölner geht dies mit wenigen Gegentoren einher.</p>
+<p>Neben Leipzig presst Leverkusen auffällig selten im Angriffsdrittel, vor allem in Relation zu anderen Teams mit hohen Marktwerten.</p>
+</div>
+<div id="einleitung" class="section level1">
+<h1>Einleitung</h1>
+<p>Die folgenden Plots untersuchen <strong>alle</strong> Pressingaktionen der Bundesliga-Saison 2021/2022 hinsichtlich des Spielfelddrittels in dem sie stattfanden.</p>
+<p>Im Mittel startete ein Team in dieser Saison 5372 Pressingaktionen. Über 44% davon finden im Mittelfeld statt. Ein Wert der auch innerhalb der Liga kaum streut. Beim Defensiv- und Angriffspressing sieht es hingegen anders aus. So stechen gerade die Topteams mit hohen Anteilen im Angriffspressing und geringen Anteilen im Defensivpressing heraus.</p>
+<p>Dass diese Pressingkonstellation jedoch zwangsläufig zu Erfolg, bzw. die gegenteilige Variante zum Misserfolg führt ist jedoch keinesfalls gesagt. Dies zeigen die Beispiele Hertha BSC und Leverkusen. Trotz einer ähnlichen Verteilung der Pressingaktionen über das Feld ist das Ergebnis ein gänzlich anderes.</p>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="26%" />
+<col width="26%" />
+<col width="5%" />
+<col width="11%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Team</th>
+<th align="right">Anteil Defensivpressing</th>
+<th align="right">Anteil Offensivpressing</th>
+<th align="right">Tore</th>
+<th align="right">Gegentore</th>
+<th align="right">Position</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bayer Leverkusen</td>
+<td align="right">35%</td>
+<td align="right">21%</td>
+<td align="right">80</td>
+<td align="right">47</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Hertha BSC</td>
+<td align="right">37%</td>
+<td align="right">19%</td>
+<td align="right">37</td>
+<td align="right">71</td>
+<td align="right">16</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="pressingzonen-bundesliga-saison-20212022" class="section level1">
+<h1>Pressingzonen Bundesliga Saison 2021/2022</h1>
+<p>Der Plot zeigt für jedes Team ob der <strong>Anteil der Pressingaktionen</strong> im jeweiligen Spielfelddrittel über oder unter dem Mittelwert der Liga liegt. Die Teams sind dabei entsprechend des Tabellenplatzes angeordnet.</p>
+<p>D.h. Hertha BSC Berlin startet relativ gesehen überdurchschnittlich viele Pressingaktionen im eigenen Defensivdrittel und einen unterdurchschnittlich geringen Anteil der Pressingaktionen in den anderen beiden Spielfelddritteln.</p>
+<p><img src="https://mylittlejotter.netlify.app/post/2022-06-20-pressing-buli/index_files/figure-html/plot-anteil-1.png" width="672" /></p>
+<p>Analog zum obigen Plot bezieht sich dieser auf die absoluten Werte.</p>
+<p>D.h. der VfL Bochum startete in allen Dritteln des Spielfeldes überdurchschnittliche viele Pressingaktionen. In der absoluten Betrachtung deuten diese Zahlen natürlich auch auf relativ hohe/niedrige Ballbesitzanteile hin.</p>
+<p><img src="https://mylittlejotter.netlify.app/post/2022-06-20-pressing-buli/index_files/figure-html/plot-total-1.png" width="672" /></p>
+</div>
+<div id="fokus-angriffspressing" class="section level1">
+<h1>Fokus Angriffspressing</h1>
+<p>Angriffspressing erfährt in den letzten Jahren viel Aufmerksamkeit. Hierzulande mit Sicherheit auch aufgrund Jürgen Klopps Vorliebe für diesen Spielstil. Seine Motivation dafür ist simpel:</p>
+<blockquote>
+“Alles, was du den Gegner unter Druck machen lässt, macht es für ihn bedeutend schwieriger.”
+<footer>
+— Jürgen Klopp
+</footer>
+</blockquote>
+<p>Zeitgleich birgt Angriffspressing aber auch einige Risiken. Führt es nicht zum Erfolg bietet es dem gegnerischen Team die Chance einen vielversprechenden Konter zu fahren, u.a. dadurch, dass i.d.R. mit relativ wenigen Passspielen viele gegnerische Spieler <a href="https://de.wikipedia.org/wiki/Packing_(Fußball)">gepackt</a> werden können.</p>
+<div id="kaderwerte" class="section level2">
+<h2>Kaderwerte</h2>
+<p>Um erfolgreiches Angriffspressing betreiben zu können bedarf es also zum einem einer Strategie im Falle eines gescheiterten Versuchs, aber auch Spieler die technisch und auch körperlich in der Lage sind diese Laufintensive spielweise kollektiv umzusetzen.</p>
+<p>Aus diesem Grund lohnt ein Blick auf die Kaderwerte, als Indikator für die Qualität einer Mannschaft. Der Plot zeigt den durchschnittlichen Marktwert der Top-20 Spieler nach Marktwert der Kader jedes Vereins in Relation zum Anteil der Pressingaktionen im Angriffsdrittel.</p>
+<p>Die Beschränkung auf die Top-20 soll einen Spieltagskader abbilden und ein verwässern durch Spieler aus dem erweiterten Kader verhindern.</p>
+<p>Auffällig ist, dass die beiden Top-Teams der Bundesliga auch das meiste Angriffspressing betreiben, zeitglich aber auch, dass Leverkusen wenig Hoffenheim und der 1. FC Köln jedoch anteilig recht viel Angriffspressing betreiben.</p>
+<p>Die horizontalen und vertikalen orangenen Linien zeigen in diesem und den folgenden Plots die jeweiligen Mittelwerte an.</p>
+<p><img src="https://mylittlejotter.netlify.app/post/2022-06-20-pressing-buli/index_files/figure-html/att_pressing_vs_value-1.png" width="672" /></p>
+</div>
+<div id="tore-gegentore" class="section level2">
+<h2>Tore &amp; Gegentore</h2>
+<p>Wie übersetzt sich die Nutzung von Angriffsoressing nun in Tore und Gegentore?</p>
+<p>Wir betrachten zunächst die Gegentore. Schließlich ist Pressing per se eine Defensivaktion, die - unabhängig von etwaigen Kontern und Ballbesitzphasen die eingeleitet werden können - den Gegner vom Torerfolg abhält.</p>
+<p>Dabei zeigt sich, dass Teams die zu Angriffspressing neigen weniger Gegentore bekommen. Selbstredend interagiert dies, wie gezeigt, mit der Qualität des Kaders, spannend ist jedoch auch hier wieder der 1. FC Köln, der trotz eines geringen Kaderwertes und hohen Anteilen Angriffspressing wenig Gegentore bekommt.</p>
+<p><img src="https://mylittlejotter.netlify.app/post/2022-06-20-pressing-buli/index_files/figure-html/att_pressing_vs_goalsagainst-1.png" width="672" /></p>
+<p>Positiv ist die Beziehung zwischen Angriffspressing und erzielten Toren. Jedoch zeigt sich mit den Blick auf den eigenen Torerfolg ein deutlich stärkeres Gefälle zwischen den Teams mit einem hohen Marktwert und dem Rest. Dies zeigen vor allem Leipzig und Leverkusen, welche trotz niedriger Anteile des Angriffspressings überdurchschnittlich viele Tore erzielt haben.</p>
+<p><img src="https://mylittlejotter.netlify.app/post/2022-06-20-pressing-buli/index_files/figure-html/att_pressing_vs_goalsfor-1.png" width="672" /></p>
+</div>
+</div>
+
+        </div>
+
+        
+      <hr />
+        <div class="row next-prev-navigator">
+
+
+  
+
+  
+    
+    
+      
+        
+        
+        <div class="col-md-12 next-article">
+          <a href="/post/2021-01-25-exploring-bundestag-speeches/" class="btn btn-outline-info">
+            <span>Next <i class="fas fa-chevron-circle-right"></i></span>
+            <br />
+            <span>Exploring Bundestag speeches</span>
+          </a>
+        </div>
+      
+    
+  
+
+</div>
+
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function () {
+    
+    
+    if (window.location.hostname == "localhost") return;
+
+    var dsq = document.createElement("script");
+    dsq.type = "text/javascript";
+    dsq.async = true;
+    var disqus_shortname = "https-mylittlejotter-netlify-app";
+    dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+    (
+      document.getElementsByTagName("head")[0] ||
+      document.getElementsByTagName("body")[0]
+    ).appendChild(dsq);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+<a href="https://disqus.com/" class="dsq-brlink"
+  >comments powered by <span class="logo-disqus">Disqus</span></a
+>
+
+      
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+
+      
+       
+    </div>
+
+    
+
+  
+
+
+
+
+  
+
+
+
+
+  
+  
+    
+  
+
+
+<footer class="container-fluid text-center align-content-center footer pb-2">
+      </div>
+      
+    </div>
+  </div>
+  <hr />
+  <div class="container">
+    <div class="row text-left">
+      <div class="col-md-4">
+        <a id="theme" href="https://github.com/hossainemruz/toha" target="#">
+          <img src="/assets/images/toha-logo.webp">
+          Toha
+        </a>
+      </div>
+      <div class="col-md-4 text-center">© 2020 Copyright.</div>
+      <div class="col-md-4 text-right">
+        <a id="hugo" href="https://gohugo.io/">Powered by
+        <img
+          src="/assets/images/hugo-logo-wide.svg"
+          alt="Hugo Logo"
+          height="18"
+        />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+
+<script src="/assets/js/navbar.js"></script>
+<script src="/assets/js/main.js"></script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script src="/assets/js/single.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+
+
+  </body>
+</html>
