@@ -56,7 +56,7 @@ Analog zum obigen Plot bezieht sich dieser auf die absoluten Werte.
 
 Der VfL Bochum startete beispielsweise in allen Dritteln des Spielfeldes überdurchschnittlich viele Pressingaktionen. In der absoluten Betrachtung deuten diese Zahlen natürlich auch auf relativ hohe/niedrige Ballbesitzanteile hin.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/plot-total-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/plot-total-1.png" width="672" style="display: block; margin: auto;" />
 
 # Fokus Angriffspressing
 
@@ -78,7 +78,7 @@ Auffällig ist, dass die beiden Top-Teams der Bundesliga auch das meiste Angriff
 
 Die horizontalen und vertikalen orangenen Linien zeigen in diesem und den folgenden Plots die jeweiligen Mittelwerte an. 
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/att_pressing_vs_value-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/att_pressing_vs_value-1.png" width="672" style="display: block; margin: auto;" />
 
 ## Tore & Gegentore
 
@@ -88,11 +88,11 @@ Zunächst ein Blick auf die Gegentore. Schließlich ist Pressing per se eine Def
 
 Dabei zeigt sich, dass Teams die zu Angriffspressing neigen weniger Gegentore bekommen. Selbstredend interagiert dies, wie gezeigt, mit der Qualität des Kaders, spannend ist jedoch auch hier wieder der 1. FC Köln, der trotz eines geringen Kaderwertes und hohen Anteilen Angriffspressings wenig Gegentore bekommt.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/att_pressing_vs_goalsagainst-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/att_pressing_vs_goalsagainst-1.png" width="672" style="display: block; margin: auto;" />
 
 Positiv ist die Beziehung zwischen Angriffspressing und erzielten Toren. Jedoch zeigt sich mit den Blick auf den eigenen Torerfolg ein deutlich stärkeres Gefälle zwischen den Teams mit einem hohen Marktwert und dem Rest. Dies zeigen vor allem Leipzig und Leverkusen, welche trotz niedriger Anteile des Angriffspressings überdurchschnittlich viele Tore erzielt haben.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/att_pressing_vs_goalsfor-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/att_pressing_vs_goalsfor-1.png" width="672" style="display: block; margin: auto;" />
 
 # Code & Session Info
 
