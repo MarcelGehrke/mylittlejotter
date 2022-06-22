@@ -21,22 +21,6 @@ Aber auch Teams mit weniger teuren Kadern wie Hoffenheim und der 1. FC Köln pre
 Neben Leipzig presst Leverkusen auffällig selten im Angriffsdrittel, vor allem in Relation zu anderen Teams mit hohen Marktwerten.
 
 
-```r
-knitr::opts_chunk$set(echo = FALSE)
-library(worldfootballR)
-library(tidyverse)
-library(magrittr)
-library(stringr)
-library(ggsoccer)
-library(ggtext)
-library(RColorBrewer)
-library(glue)
-library(cowplot)
-library(janitor)
-library(rvest)
-library(polite)
-library(ggimage)
-```
 
 
 
