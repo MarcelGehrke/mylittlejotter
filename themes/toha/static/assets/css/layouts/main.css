@@ -18,12 +18,13 @@ body {
   font-family: "Muli";
 }
 
-h1,
+h1
 h2,
 h3,
 h4,
 h5 {
   color: #1c2d41;
+  text-align: left;
 }
 
 strong {
@@ -158,6 +159,7 @@ img.right {
 .sub-title {
   color: #c0ccda;
   font-size: 10pt;
+  text-align: center;
 }
 
 /* --- FOOTER START --- */
