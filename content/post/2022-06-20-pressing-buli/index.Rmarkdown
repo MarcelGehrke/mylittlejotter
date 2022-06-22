@@ -36,12 +36,12 @@ library(polite)
 library(ggimage)
 ```
 
-```{r, read_data, message=FALSE}
+```{r, read_data, message=FALSE, echo=FALSE}
 
 data <- readRDS("data/pressing_data.rds")
 ```
 
-```{r, plot_utils, message=FALSE}
+```{r, plot_utils, message=FALSE, echo=FALSE}
 
 ## coords for 3rd divide
 lines <- tibble(
@@ -71,7 +71,7 @@ Im Mittel startete ein Team in dieser Saison `r round(mean(data$total))` Pressin
 
 Dass diese Pressingkonstellation zwangsläufig zu Erfolg, bzw. die gegenteilige Variante zu Misserfolg führt ist jedoch keinesfalls gesagt. Dies zeigen die Beispiele Hertha BSC und Leverkusen. Trotz einer ähnlichen Verteilung der Pressingaktionen über das Feld ist das Ergebnis ein gänzlich anderes.
 
-```{r, lev_hbsc, results='asis', fig.align='center'}
+```{r, lev_hbsc, results='asis', fig.align='center', echo=FALSE}
 
 table_data <- data %>%
   filter(squad %in% c("Hertha BSC", "Bayer Leverkusen")) %>%
@@ -94,7 +94,7 @@ Der Plot zeigt für jedes Team ob der **Anteil der Pressingaktionen** im jeweili
 
 Das heißt Hertha BSC Berlin startet, relativ gesehen, überdurchschnittlich viele Pressingaktionen im eigenen Defensivdrittel und einen unterdurchschnittlichen Anteil der Pressingaktionen in den anderen beiden Spielfelddritteln.
 
-```{r, plot-anteil, fig.align='center'}
+```{r, plot-anteil, fig.align='center', echo=FALSE}
 
 ggplot() +
   geom_rect(
@@ -133,7 +133,7 @@ Analog zum obigen Plot bezieht sich dieser auf die absoluten Werte.
 
 Der VfL Bochum startete beispielsweise in allen Dritteln des Spielfeldes überdurchschnittlich viele Pressingaktionen. In der absoluten Betrachtung deuten diese Zahlen natürlich auch auf relativ hohe/niedrige Ballbesitzanteile hin.
 
-```{r, plot-total}
+```{r, plot-total, echo=FALSE}
 
 ggplot() +
   geom_rect(
@@ -188,7 +188,7 @@ Auffällig ist, dass die beiden Top-Teams der Bundesliga auch das meiste Angriff
 
 Die horizontalen und vertikalen orangenen Linien zeigen in diesem und den folgenden Plots die jeweiligen Mittelwerte an. 
 
-```{r, att_pressing_vs_value, warning=FALSE, message=FALSE}
+```{r, att_pressing_vs_value, warning=FALSE, message=FALSE, echo=FALSE}
 
 data %>%
   ggplot(aes(x = value_mean_top20, y = att_av_mean, label = squad)) +
@@ -232,7 +232,7 @@ Zunächst ein Blick auf die Gegentore. Schließlich ist Pressing per se eine Def
 
 Dabei zeigt sich, dass Teams die zu Angriffspressing neigen weniger Gegentore bekommen. Selbstredend interagiert dies, wie gezeigt, mit der Qualität des Kaders, spannend ist jedoch auch hier wieder der 1. FC Köln, der trotz eines geringen Kaderwertes und hohen Anteilen Angriffspressings wenig Gegentore bekommt.
 
-```{r, att_pressing_vs_goalsagainst, warning=FALSE, message=FALSE}
+```{r, att_pressing_vs_goalsagainst, warning=FALSE, message=FALSE, echo=FALSE}
 
 data %>%
   ggplot(aes(x = att_av_mean, y = ga, label = squad)) +
@@ -268,7 +268,7 @@ data %>%
 
 Positiv ist die Beziehung zwischen Angriffspressing und erzielten Toren. Jedoch zeigt sich mit den Blick auf den eigenen Torerfolg ein deutlich stärkeres Gefälle zwischen den Teams mit einem hohen Marktwert und dem Rest. Dies zeigen vor allem Leipzig und Leverkusen, welche trotz niedriger Anteile des Angriffspressings überdurchschnittlich viele Tore erzielt haben.
 
-```{r, att_pressing_vs_goalsfor, warning=FALSE, message=FALSE}
+```{r, att_pressing_vs_goalsfor, warning=FALSE, message=FALSE, echo=FALSE}
 
 data %>%
   ggplot(aes(x = att_av_mean, y = gf, label = squad)) +

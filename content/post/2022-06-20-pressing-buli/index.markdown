@@ -23,27 +23,8 @@ Neben Leipzig presst Leverkusen auffällig selten im Angriffsdrittel, vor allem 
 
 
 
-```r
-data <- readRDS("data/pressing_data.rds")
-```
 
 
-```r
-## coords for 3rd divide
-lines <- tibble(
-  x = c(33.33, 66.66),
-  y = 0,
-  xend = c(33.33, 66.66),
-  yend = 100
-)
-
-colour_1 <- "#248aaa"
-colour_2 <- "#e07452"
-colour_3 <- "grey97"
-
-data %<>%
-  mutate(squad_order = forcats::fct_reorder(squad, rk))
-```
 
 # Einleitung
 
@@ -58,24 +39,6 @@ Im Mittel startete ein Team in dieser Saison 5372 Pressingaktionen. Über 44% da
 Dass diese Pressingkonstellation zwangsläufig zu Erfolg, bzw. die gegenteilige Variante zu Misserfolg führt ist jedoch keinesfalls gesagt. Dies zeigen die Beispiele Hertha BSC und Leverkusen. Trotz einer ähnlichen Verteilung der Pressingaktionen über das Feld ist das Ergebnis ein gänzlich anderes.
 
 
-```r
-table_data <- data %>%
-  filter(squad %in% c("Hertha BSC", "Bayer Leverkusen")) %>%
-  transmute(
-    Team = squad,
-    `Defensivpressing` = formattable::percent(def_av_mean, digits = 0),
-    `Offensivpressing` = formattable::percent(att_av_mean, digits = 0),
-    Tore = gf,
-    Gegentore = ga,
-    Position = rk
-  ) %>%
-  arrange(Position)
-
-knitr::kable(table_data)
-```
-
-
-
 |Team             | Defensivpressing| Offensivpressing| Tore| Gegentore| Position|
 |:----------------|----------------:|----------------:|----:|---------:|--------:|
 |Bayer Leverkusen |              35%|              21%|   80|        47|        3|
@@ -87,81 +50,11 @@ Der Plot zeigt für jedes Team ob der **Anteil der Pressingaktionen** im jeweili
 
 Das heißt Hertha BSC Berlin startet, relativ gesehen, überdurchschnittlich viele Pressingaktionen im eigenen Defensivdrittel und einen unterdurchschnittlichen Anteil der Pressingaktionen in den anderen beiden Spielfelddritteln.
 
-
-```r
-ggplot() +
-  geom_rect(
-    data = data, aes(xmin = 0, xmax = 33.33, ymin = 0, ymax = 100),
-    fill = ifelse(data$def_av_mean > mean(data$def_av_mean), colour_1, colour_2)
-  ) +
-  geom_rect(
-    data = data, aes(xmin = 33.33, xmax = 66.66, ymin = 0, ymax = 100),
-    fill = ifelse(data$mid_av_mean > mean(data$mid_av_mean), colour_1, colour_2)
-  ) +
-  geom_rect(
-    data = data, aes(xmin = 66.66, xmax = 100, ymin = 0, ymax = 100),
-    fill = ifelse(data$att_av_mean > mean(data$att_av_mean), colour_1, colour_2)
-  ) +
-  geom_segment(data = lines, aes(x = x, y = y, xend = xend, yend = yend), colour = colour_3, alpha = 0.6) +
-  annotate_pitch(colour = colour_3, fill = "NA") +
-  theme_pitch() +
-  facet_wrap(~squad_order, nrow = 3, strip.position = "bottom") +
-  labs(
-    title = "1.Bundesliga - Pressingzonen 2021/2022",
-    subtitle = "<b style='color:grey97'>Liegt der Anteil der Pressingaktionen eines Teams </b><b style='color:#248aaa'>über </b><b style='color:grey97'>oder </b><b span style='color:#e07452'>unter </b><b style='color:grey97'>dem Ligadurchschnitt im Defensiv-, Mittel- oder Angriffsdrittel?</b>",
-    caption = ("Data: fbref.com")
-  ) +
-  theme(
-    plot.title = element_text(size = 18, colour = colour_3, face = "bold", hjust = 0.5),
-    plot.subtitle = element_textbox_simple(size = 12, halign = 0.5),
-    plot.caption = element_text(size = 10, colour = colour_3),
-    legend.position = "none",
-    plot.background = element_rect("grey20"),
-    strip.background = element_blank(),
-    strip.text = element_text(colour = colour_3, size = 8)
-  )
-```
-
 <img src="{{< blogdown/postref >}}index_files/figure-html/plot-anteil-1.png" width="672" style="display: block; margin: auto;" />
 
 Analog zum obigen Plot bezieht sich dieser auf die absoluten Werte.
 
 Der VfL Bochum startete beispielsweise in allen Dritteln des Spielfeldes überdurchschnittlich viele Pressingaktionen. In der absoluten Betrachtung deuten diese Zahlen natürlich auch auf relativ hohe/niedrige Ballbesitzanteile hin.
-
-
-```r
-ggplot() +
-  geom_rect(
-    data = data, aes(xmin = 0, xmax = 33.33, ymin = 0, ymax = 100),
-    fill = ifelse(data$def_av > mean(data$def_av), colour_1, colour_2)
-  ) +
-  geom_rect(
-    data = data, aes(xmin = 33.33, xmax = 66.66, ymin = 0, ymax = 100),
-    fill = ifelse(data$mid_av > mean(data$mid_av), colour_1, colour_2)
-  ) +
-  geom_rect(
-    data = data, aes(xmin = 66.66, xmax = 100, ymin = 0, ymax = 100),
-    fill = ifelse(data$att_av > mean(data$att_av), colour_1, colour_2)
-  ) +
-  geom_segment(data = lines, aes(x = x, y = y, xend = xend, yend = yend), colour = colour_3, alpha = 0.6) +
-  annotate_pitch(colour = colour_3, fill = "NA") +
-  theme_pitch() +
-  facet_wrap(~squad_order, nrow = 3, strip.position = "bottom") +
-  labs(
-    title = "1.Bundesliga - Pressingzonen 2021/2022",
-    subtitle = "<b style='color:grey97'>Liegt die Zahl der Pressingaktionen eines Teams </b><b style='color:#248aaa'>über </b><b style='color:grey97'>oder </b><b span style='color:#e07452'>unter </b><b style='color:grey97'>dem Ligadurchschnitt im Defensiv-, Mittel- oder Angriffsdrittel?</b>",
-    caption = ("Data: fbref.com")
-  ) +
-  theme(
-    plot.title = element_text(size = 18, colour = colour_3, face = "bold", hjust = 0.5),
-    plot.subtitle = element_textbox_simple(size = 12, halign = 0.5),
-    plot.caption = element_text(size = 10, colour = colour_3),
-    legend.position = "none",
-    plot.background = element_rect("grey20"),
-    strip.background = element_blank(),
-    strip.text = element_text(colour = colour_3, size = 8)
-  )
-```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/plot-total-1.png" width="672" />
 
@@ -185,42 +78,6 @@ Auffällig ist, dass die beiden Top-Teams der Bundesliga auch das meiste Angriff
 
 Die horizontalen und vertikalen orangenen Linien zeigen in diesem und den folgenden Plots die jeweiligen Mittelwerte an. 
 
-
-```r
-data %>%
-  ggplot(aes(x = value_mean_top20, y = att_av_mean, label = squad)) +
-  geom_point(color = colour_1) +
-  # ggrepel::geom_text_repel(hjust = 0, vjust = 0, color = colour_2) +
-  geom_smooth(method = "lm", se = FALSE, color = colour_1) +
-  labs(
-    x = "Marktwert je Spieler",
-    y = "Pressingaktionen im Angriffsdrittel"
-  ) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0.18, 0.30)) +
-  scale_x_continuous(labels = scales::label_dollar(suffix = "€", prefix = "", big.mark = ".")) +
-  geom_image(aes(image = team_img), size = 0.055) +
-  labs(
-    title = "Anteil der Pressingaktionen im Angriffsdrittel",
-    subtitle = "nach durchschnittlichem Marktwert der Top-20 Spieler eines Kaders",
-    caption = ("Data: fbref.com & transfermarkt.de")
-  ) +
-  theme(
-    plot.title = element_text(size = 16, colour = colour_3, face = "bold", hjust = 0.5),
-    plot.subtitle = element_textbox_simple(size = 12, halign = 0.5, colour = colour_3),
-    plot.caption = element_text(size = 10, colour = colour_3),
-    legend.position = "none",
-    plot.background = element_rect("grey20"),
-    panel.background = element_rect("grey20"),
-    strip.background = element_blank(),
-    strip.text = element_text(colour = colour_3, size = 12),
-    panel.grid = element_blank(),
-    axis.text = element_text(colour = "white"),
-    axis.title = element_text(colour = "white")
-  ) +
-  geom_hline(yintercept = mean(data$att_av_mean), color = colour_2) +
-  geom_vline(xintercept = mean(data$value_mean_top20), color = colour_2)
-```
-
 <img src="{{< blogdown/postref >}}index_files/figure-html/att_pressing_vs_value-1.png" width="672" />
 
 ## Tore & Gegentore
@@ -231,76 +88,9 @@ Zunächst ein Blick auf die Gegentore. Schließlich ist Pressing per se eine Def
 
 Dabei zeigt sich, dass Teams die zu Angriffspressing neigen weniger Gegentore bekommen. Selbstredend interagiert dies, wie gezeigt, mit der Qualität des Kaders, spannend ist jedoch auch hier wieder der 1. FC Köln, der trotz eines geringen Kaderwertes und hohen Anteilen Angriffspressings wenig Gegentore bekommt.
 
-
-```r
-data %>%
-  ggplot(aes(x = att_av_mean, y = ga, label = squad)) +
-  geom_point(color = colour_1) +
-  # ggrepel::geom_text_repel(hjust = 0, vjust = 0, color = colour_2) +
-  geom_smooth(method = "lm", se = FALSE, color = colour_1) +
-  labs(
-    x = "Pressingaktionen im Angriffsdrittel",
-    y = "Gegentore Saison 2021/2022"
-  ) +
-  scale_x_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0.18, 0.30)) +
-  geom_image(aes(image = team_img), size = 0.055) +
-  labs(
-    title = "Gegentore nach Anteil der Pressingaktionen im Angriffsdrittel",
-    caption = ("Data: fbref.com & transfermarkt.de")
-  ) +
-  theme(
-    plot.title = element_text(size = 16, colour = colour_3, face = "bold", hjust = 0.5),
-    plot.subtitle = element_textbox_simple(size = 12, halign = 0.5),
-    plot.caption = element_text(size = 10, colour = colour_3),
-    legend.position = "none",
-    plot.background = element_rect("grey20"),
-    panel.background = element_rect("grey20"),
-    strip.background = element_blank(),
-    strip.text = element_text(colour = colour_3, size = 12),
-    panel.grid = element_blank(),
-    axis.text = element_text(colour = "white"),
-    axis.title = element_text(colour = "white")
-  ) +
-  geom_hline(yintercept = mean(data$ga), color = colour_2) +
-  geom_vline(xintercept = mean(data$att_av_mean), color = colour_2)
-```
-
 <img src="{{< blogdown/postref >}}index_files/figure-html/att_pressing_vs_goalsagainst-1.png" width="672" />
 
 Positiv ist die Beziehung zwischen Angriffspressing und erzielten Toren. Jedoch zeigt sich mit den Blick auf den eigenen Torerfolg ein deutlich stärkeres Gefälle zwischen den Teams mit einem hohen Marktwert und dem Rest. Dies zeigen vor allem Leipzig und Leverkusen, welche trotz niedriger Anteile des Angriffspressings überdurchschnittlich viele Tore erzielt haben.
-
-
-```r
-data %>%
-  ggplot(aes(x = att_av_mean, y = gf, label = squad)) +
-  geom_point(color = colour_1) +
-  geom_smooth(method = "lm", se = FALSE, color = colour_1) +
-  labs(
-    x = "Pressingaktionen im Angriffsdrittel",
-    y = "Tore Saison 2021/2022"
-  ) +
-  scale_x_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0.18, 0.30)) +
-  geom_image(aes(image = team_img), size = 0.055) +
-  labs(
-    title = "Tore nach Anteil der Pressingaktionen im Angriffsdrittel",
-    caption = ("Data: fbref.com & transfermarkt.de")
-  ) +
-  theme(
-    plot.title = element_text(size = 16, colour = colour_3, face = "bold", hjust = 0.5),
-    plot.subtitle = element_textbox_simple(size = 12, halign = 0.5),
-    plot.caption = element_text(size = 10, colour = colour_3),
-    legend.position = "none",
-    plot.background = element_rect("grey20"),
-    panel.background = element_rect("grey20"),
-    strip.background = element_blank(),
-    strip.text = element_text(colour = colour_3, size = 12),
-    panel.grid = element_blank(),
-    axis.text = element_text(colour = "white"),
-    axis.title = element_text(colour = "white")
-  ) +
-  geom_hline(yintercept = mean(data$gf), color = colour_2) +
-  geom_vline(xintercept = mean(data$att_av_mean), color = colour_2)
-```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/att_pressing_vs_goalsfor-1.png" width="672" />
 
