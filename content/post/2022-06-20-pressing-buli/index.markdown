@@ -28,9 +28,7 @@ Neben Leipzig presst Leverkusen auffällig selten im Angriffsdrittel, vor allem 
 
 # Eine Sommerpause macht noch keine Fussballpause...
 
-Eine Sommerpause macht noch keine Fussballpause...
-
-Während der Ball im Profifußball ruht, lässt sich die gewonnene Zeit ideal nutzen um zum einem den Amateurplätzen des Landes Besuche abzustatten und dabei eine Wurst vom Holzkohlegrill zu genießen und zum anderen um einen schnellen Blick auf die Daten der vergangenen Saison zu werfen.
+Während der Ball im Profifussball ruht, lässt sich die gewonnene Zeit ideal nutzen um zum einem den Amateurplätzen des Landes Besuche abzustatten und dabei eine Wurst vom Holzkohlegrill zu genießen und zum anderen um einen schnellen Blick auf die Daten der vergangenen Saison zu werfen.
 
 Die folgenden Plots untersuchen **alle** Pressingaktionen der Bundesliga-Saison 2021/2022 (in Summe 96.688) mit Blick auf das Spielfelddrittel in dem sie stattfanden.
 
@@ -98,56 +96,6 @@ Positiv ist die Beziehung zwischen Angriffspressing und erzielten Toren. Jedoch 
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/att_pressing_vs_goalsfor-1.png" width="672" style="display: block; margin: auto;" />
 
-# Code & Session Info
+# Code
 
 Der Code der genutzt wurde um die Daten aufzubereiten und darzustellen findet sich [hier](https://github.com/MarcelGehrke/bundesliga_pressing).
-
-
-```
-## R version 4.2.0 Patched (2022-06-09 r82473)
-## Platform: aarch64-apple-darwin20 (64-bit)
-## Running under: macOS Monterey 12.4
-## 
-## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
-## 
-## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] ggimage_0.3.1        polite_0.1.1         rvest_1.0.2         
-##  [4] janitor_2.1.0        cowplot_1.1.1        glue_1.6.1          
-##  [7] RColorBrewer_1.1-3   ggtext_0.1.1         ggsoccer_0.1.6      
-## [10] magrittr_2.0.2       forcats_0.5.1        stringr_1.4.0       
-## [13] dplyr_1.0.9          purrr_0.3.4          readr_2.1.2         
-## [16] tidyr_1.2.0          tibble_3.1.6         ggplot2_3.3.6       
-## [19] tidyverse_1.3.1      worldfootballR_0.5.6
-## 
-## loaded via a namespace (and not attached):
-##  [1] nlme_3.1-157       fs_1.5.2           usethis_2.1.5      lubridate_1.8.0   
-##  [5] httr_1.4.2         rprojroot_2.0.2    tools_4.2.0        backports_1.4.1   
-##  [9] bslib_0.3.1        utf8_1.2.2         R6_2.5.1           mgcv_1.8-40       
-## [13] DBI_1.1.3          colorspace_2.0-3   robotstxt_0.7.13   withr_2.4.3       
-## [17] tidyselect_1.1.2   curl_4.3.2         compiler_4.2.0     cli_3.3.0         
-## [21] xml2_1.3.3         labeling_0.4.2     bookdown_0.27      sass_0.4.1        
-## [25] scales_1.2.0       digest_0.6.29      yulab.utils_0.0.4  rmarkdown_2.14    
-## [29] pkgconfig_2.0.3    htmltools_0.5.2    dbplyr_2.2.0       fastmap_1.1.0     
-## [33] highr_0.9          htmlwidgets_1.5.4  rlang_1.0.2        readxl_1.4.0      
-## [37] rstudioapi_0.13    farver_2.1.0       gridGraphics_0.5-1 jquerylib_0.1.4   
-## [41] generics_0.1.2     jsonlite_1.7.3     ggplotify_0.1.0    Matrix_1.4-1      
-## [45] Rcpp_1.0.8         munsell_0.5.0      fansi_1.0.2        lifecycle_1.0.1   
-## [49] stringi_1.7.6      yaml_2.2.2         snakecase_0.11.0   grid_4.2.0        
-## [53] crayon_1.4.2       lattice_0.20-45    splines_4.2.0      haven_2.5.0       
-## [57] gridtext_0.1.4     hms_1.1.1          magick_2.7.3       knitr_1.39        
-## [61] pillar_1.7.0       ratelimitr_0.4.1   markdown_1.1       reprex_2.0.1      
-## [65] evaluate_0.15      blogdown_1.10      ggfun_0.0.6        modelr_0.1.8      
-## [69] vctrs_0.4.1        tzdb_0.3.0         cellranger_1.1.0   gtable_0.3.0      
-## [73] assertthat_0.2.1   cachem_1.0.6       xfun_0.31          formattable_0.2.1 
-## [77] tufte_0.12         broom_0.8.0        memoise_2.0.1      ellipsis_0.3.2    
-## [81] here_1.0.1
-```
-

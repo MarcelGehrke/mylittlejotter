@@ -61,9 +61,7 @@ data %<>%
 
 # Eine Sommerpause macht noch keine Fussballpause...
 
-Eine Sommerpause macht noch keine Fussballpause...
-
-Während der Ball im Profifußball ruht, lässt sich die gewonnene Zeit ideal nutzen um zum einem den Amateurplätzen des Landes Besuche abzustatten und dabei eine Wurst vom Holzkohlegrill zu genießen und zum anderen um einen schnellen Blick auf die Daten der vergangenen Saison zu werfen.
+Während der Ball im Profifussball ruht, lässt sich die gewonnene Zeit ideal nutzen um zum einem den Amateurplätzen des Landes Besuche abzustatten und dabei eine Wurst vom Holzkohlegrill zu genießen und zum anderen um einen schnellen Blick auf die Daten der vergangenen Saison zu werfen.
 
 Die folgenden Plots untersuchen **alle** Pressingaktionen der Bundesliga-Saison 2021/2022 (in Summe 96.688) mit Blick auf das Spielfelddrittel in dem sie stattfanden.
 
@@ -305,13 +303,6 @@ data %>%
   geom_vline(xintercept = mean(data$att_av_mean), color = colour_2)
 ```
 
-# Code & Session Info
+# Code
 
 Der Code der genutzt wurde um die Daten aufzubereiten und darzustellen findet sich [hier](https://github.com/MarcelGehrke/bundesliga_pressing).
-
-```{r session_info, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
-
-sessionInfo()
-
-```
-
